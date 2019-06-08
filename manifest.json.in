@@ -1,0 +1,15 @@
+{
+    "name": "calcomatrice.arc676",
+    "description": "A simple matrix calculator",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Calcomatrice",
+    "hooks": {
+        "calcomatrice": {
+            "apparmor": "calcomatrice.apparmor",
+            "desktop":  "calcomatrice.desktop"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "Arc676/Alessandro Vinciguerra <alesvinciguerra@gmail.com>",
+    "framework" : "ubuntu-sdk-16.04"
+}
