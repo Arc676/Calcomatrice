@@ -1,1 +1,1 @@
-add_subdirectory(Matrixbackend)
+add_subdirectory(MatrixBackend)

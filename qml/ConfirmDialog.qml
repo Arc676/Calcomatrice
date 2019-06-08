@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Arc676/Alessandro Vinciguerra
+// Copyright (C) 2019 Arc676/Alessandro Vinciguerra <alesvinciguerra@gmail.com>
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -11,17 +11,33 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-// See README and LICENSE for more details
 
-#ifndef MATRIXBACKEND_H
-#define MATRIXBACKEND_H
+import QtQuick 2.4
+import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
-#include <QObject>
+Dialog {
+	id: dialog
+	objectName: "confirmDialog"
 
-class MatrixBackend: public QObject {
-	Q_OBJECT
+	signal restart()
 
-public:
-};
+	text: i18n.tr("Are you sure you want to clear the memory? You will lose all saved matrices.")
 
-#endif
+	Button {
+		id: confirm
+		text: i18n.tr("Yes, delete them")
+		onClicked: {
+			dialog.restart()
+			PopupUtils.close(dialog)
+		}
+	}
+
+	Button {
+		id: cancel
+		text: i18n.tr("Cancel")
+		onClicked: {
+			PopupUtils.close(dialog)
+		}
+	}
+}
