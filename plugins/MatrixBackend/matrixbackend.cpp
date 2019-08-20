@@ -15,3 +15,185 @@
 
 #include <QDebug>
 #include "matrixbackend.h"
+
+void MatrixBackend::initMemory() {
+	matrixMemory = std::map<std::string, Matrix*>();
+}
+
+void MatrixBackend::clearMemory() {
+	for (auto it = matrixMemory.cbegin(); it != matrixMemory.cend();) {
+		matrix_destroyMatrix(it->second);
+		matrixMemory.erase(it++);
+	}
+}
+
+bool Matrix::Backend::isValidMatrixName(char* name) {
+        char c = name[0];
+        if (isalpha(c)) {
+                if (c != 'i' && c != 'm' && c != 't'&& c != 'd' && c != 'c') {
+                        return 1;
+                }
+        }
+        return 0;
+}
+
+Matrix* MatrixBackend::eval(char* expr, char** progress) {
+        evalFailed = 0;
+        Matrix* res = 0;
+        char* saveptr;
+        if (progress) {
+                saveptr = *progress;
+        }
+        char* token = progress ? PARSE_TOKEN(NULL, &saveptr) : PARSE_TOKEN(expr, &saveptr);
+        switch (token[0]) {
+                case '+':
+                case '-':
+                case '*':
+                {
+                        Matrix* left = eval(expr, &saveptr);
+                        if (evalFailed) return NULL;
+
+                        Matrix* right = eval(expr, &saveptr);
+                        if (evalFailed) {
+                                matrix_destroyMatrix(left);
+                                return NULL;
+                        }
+
+                        if (token[0] == '-') {
+                                matrix_multiplyScalar(right, right, -1);
+                        }
+
+                        res = matrix_createMatrix(left->rows, right->cols);
+                        if (token[0] == '*') {
+                                matrix_multiplyMatrix(res, left, right);
+                        } else {
+                                matrix_add(res, left, right);
+                        }
+
+                        matrix_destroyMatrix(left);
+                        matrix_destroyMatrix(right);
+                        break;
+                }
+                case '.':
+                {
+                        token = PARSE_TOKEN(NULL, &saveptr);
+                        double scalar = (double)strtod(token, (char**)NULL);
+
+                        Matrix* m1 = eval(expr, &saveptr);
+                        if (evalFailed) return NULL;
+
+                        res = matrix_createMatrix(m1->rows, m1->cols);
+                        matrix_multiplyScalar(res, m1, scalar);
+                        matrix_destroyMatrix(m1);
+                        break;
+                }
+                case '^':
+                {
+                        Matrix* m1 = eval(expr, &saveptr);
+                        if (evalFailed) return NULL;
+
+                        token = PARSE_TOKEN(NULL, &saveptr);
+                        int power = (int)strtol(token, (char**)NULL, 0);
+                        if (power == 0) {
+                                res = matrix_createIdentityMatrix(m1->rows);
+                                matrix_destroyMatrix(m1);
+                                break;
+                        } else if (power < 2) {
+                                res = m1;
+                                break;
+                        }
+                        Matrix* m2 = matrix_copyMatrix(m1);
+                        Matrix* mp = matrix_copyMatrix(m1);
+                        for (int i = 2; i <= power; i++) {
+                                matrix_multiplyMatrix(mp, m1, m2);
+                                matrix_copyEntries(m1, mp);
+                        }
+                        res = mp;
+                        matrix_destroyMatrix(m1);
+                        matrix_destroyMatrix(m2);
+                        break;
+                }
+                case 'm':
+                case 'i':
+                case 'd':
+                case 'c':
+                {
+                        if (!strcmp(token, "id")) {
+                                token = PARSE_TOKEN(NULL, &saveptr);
+                                int size = (int)strtol(token, (char**)NULL, 0);
+                                res = matrix_createIdentityMatrix(size);
+                        } else {
+                                Matrix* m1 = eval(expr, &saveptr);
+                                if (evalFailed) return NULL;
+
+                                Matrix* minors = matrix_createMatrix(m1->rows, m1->cols);
+                                Matrix* cofactors = matrix_createMatrix(m1->rows, m1->cols);
+                                double det = matrix_invert(m1, m1, minors, cofactors);
+                                switch (token[0]) {
+                                        case 'd':
+                                                res = matrix_createMatrixWithElements(1, 1, det);
+                                                break;
+                                        case 'i':
+                                        default:
+                                                res = matrix_copyMatrix(m1);
+                                                break;
+                                        case 'c':
+                                                res = matrix_copyMatrix(cofactors);
+                                                break;
+                                        case 'm':
+                                                res = matrix_copyMatrix(minors);
+                                                break;
+                                }
+                                matrix_destroyMatrix(m1);
+                                matrix_destroyMatrix(minors);
+                                matrix_destroyMatrix(cofactors);
+                        }
+                        break;
+                }
+                case 't':
+                {
+                        Matrix* m1 = eval(expr, &saveptr);
+                        if (evalFailed) return NULL;
+
+                        res = matrix_createMatrix(m1->cols, m1->rows);
+                        matrix_transpose(res, m1);
+                        matrix_destroyMatrix(m1);
+                        break;
+                }
+                case '?':
+                {
+                        res = inputMatrix();
+                        break;
+                }
+                case '=':
+                {
+                        token = PARSE_TOKEN(NULL, &saveptr);
+                        if (!isValidMatrixName(token)) {
+                                evalFailed = 1;
+                                printf("Cannot save matrix with name %s\n", token);
+                                return NULL;
+                        }
+                        res = eval(expr, &saveptr);
+                        if (evalFailed) return NULL;
+
+                        saveMatrixWithName(token, matrix_copyMatrix(res));
+                        break;
+                }
+                default:
+                        if (token[strlen(token) - 1] == '\n') {
+                                token[strlen(token) - 1] = '\0';
+                        }
+                        Matrix* stored = getMatrixWithName(token);
+                        if (!stored) {
+                                evalFailed = 1;
+                                printf("Failed to interpret token %s", token);
+                                return NULL;
+                        }
+                        res = matrix_copyMatrix(stored);
+                        break;
+        }
+        if (progress) {
+                *progress = saveptr;
+        }
+        return res;
+}

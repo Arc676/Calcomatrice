@@ -16,27 +16,7 @@ import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
 
-MainView {
-	id: root
-	objectName: 'mainView'
-	applicationName: 'calcomatrice.arc676'
-	automaticOrientation: true
-
-	width: units.gu(45)
-	height: units.gu(75)
-	property real margin: units.gu(2)
-
-	PageStack {
-		id: pageViewer
-		anchors.fill: parent
-
-		property CalculatorUI mainUI: CalculatorUI {
-			visible: false
-		}
-
-		Component.onCompleted: {
-			pageViewer.clear()
-			pageViewer.push(mainUI)
-		}
-	}
+Rectangle {
+	id: calculatorUI
+	anchors.fill: parent
 }

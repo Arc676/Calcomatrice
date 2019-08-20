@@ -18,10 +18,32 @@
 
 #include <QObject>
 
+#include <map>
+#include <string>
+
+#include <string.h>
+#include <ctype.h>
+
+#include "matrix.h"
+
+#define PARSE_TOKEN(expr, ptr) strtok_r(expr, " ", ptr)
+
 class MatrixBackend: public QObject {
 	Q_OBJECT
 
+	Matrix* lastResult = nullptr;
+	std::map<std::string, Matrix*> matrixMemory;
+
+	bool isValidMatrixName(char* name);
+
+	Matrix* eval(char* expr, char** progress);
+
 public:
+	Q_INVOKABLE void initMemory();
+
+	Q_INVOKABLE void clearMemory();
+
+	Q_INVOKABLE bool evaluateExpression(QVariant expr);
 };
 
 #endif
