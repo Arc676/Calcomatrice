@@ -1,0 +1,6 @@
+[submodule "plugins/MatrixBackend/exprfix"]
+	path = plugins/MatrixBackend/exprfix
+	url = https://github.com/arc676/exprfix
+[submodule "plugins/MatrixBackend/matrix-library"]
+	path = plugins/MatrixBackend/matrix-library
+	url = https://github.com/arc676/matrix-library

@@ -9,7 +9,12 @@ set(
 
 set(CMAKE_AUTOMOC ON)
 
+include_directories(${CMAKE_SOURCE_DIR}/plugins/MatrixBackend/lib)
+link_directories(${CMAKE_SOURCE_DIR}/plugins/MatrixBackend/lib)
+
 add_library(${PLUGIN} MODULE ${SRC})
+target_link_libraries(${PLUGIN} ${CMAKE_SOURCE_DIR}/plugins/MatrixBackend/lib/libexprfix.a)
+target_link_libraries(${PLUGIN} ${CMAKE_SOURCE_DIR}/plugins/MatrixBackend/lib/libmatrix.a)
 set_target_properties(${PLUGIN} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PLUGIN})
 qt5_use_modules(${PLUGIN} Qml Quick DBus)
 
