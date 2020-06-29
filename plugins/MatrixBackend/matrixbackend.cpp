@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Arc676/Alessandro Vinciguerra
+// Copyright (C) 2019-20 Arc676/Alessandro Vinciguerra
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -6,11 +6,11 @@
 
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 // See README and LICENSE for more details
 
 #include <QDebug>
@@ -27,7 +27,23 @@ void MatrixBackend::clearMemory() {
 	}
 }
 
-bool Matrix::Backend::isValidMatrixName(char* name) {
+Matrix* MatrixBackend::getMatrixWithName(char* name) {
+        std::string cppname(name);
+        if (matrixMemory.find(cppname) != matrixMemory.end()) {
+                return matrixMemory[cppname];
+        }
+        return 0;
+}
+
+void MatrixBackend::saveMatrixWithName(char* name, Matrix* m) {
+        std::string cppname(name);
+        if (matrixMemory.find(cppname) != matrixMemory.end()) {
+                matrix_destroyMatrix(matrixMemory[cppname]);
+        }
+        matrixMemory[cppname] = m;
+}
+
+bool MatrixBackend::isValidMatrixName(char* name) {
         char c = name[0];
         if (isalpha(c)) {
                 if (c != 'i' && c != 'm' && c != 't'&& c != 'd' && c != 'c') {
@@ -170,7 +186,6 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                         token = PARSE_TOKEN(NULL, &saveptr);
                         if (!isValidMatrixName(token)) {
                                 evalFailed = 1;
-                                printf("Cannot save matrix with name %s\n", token);
                                 return NULL;
                         }
                         res = eval(expr, &saveptr);
@@ -186,7 +201,6 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                         Matrix* stored = getMatrixWithName(token);
                         if (!stored) {
                                 evalFailed = 1;
-                                printf("Failed to interpret token %s", token);
                                 return NULL;
                         }
                         res = matrix_copyMatrix(stored);
