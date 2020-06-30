@@ -13,3 +13,5 @@ Both dependencies are included as submodules in this repository. Note that the s
 # Licensing
 
 Project and backend library available under GPLv3. See `LICENSE` for full license text.
+
+Thanks to [@theberzi](https://twitter.com/theberzi) for the app icon (released into the public domain) and the app name.

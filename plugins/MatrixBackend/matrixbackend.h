@@ -24,7 +24,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "matrix.h"
+#include "libmatrix.h"
 
 #define PARSE_TOKEN(expr, ptr) strtok_r(expr, " ", ptr)
 
@@ -44,8 +44,6 @@ public:
 	Q_INVOKABLE void initMemory();
 
 	Q_INVOKABLE void clearMemory();
-
-	Q_INVOKABLE bool evaluateExpression(QVariant expr);
 
 signals:
 	void memoryChanged();

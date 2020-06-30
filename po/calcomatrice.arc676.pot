@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-20 11:44+0000\n"
+"POT-Creation-Date: 2020-06-30 20:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/DefaultHeader.qml:20 calcomatrice.desktop.in.h:1
+#: ../qml/DefaultHeader.qml:23 calcomatrice.desktop.in.h:1
 msgid "Calcomatrice"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:27
+#: ../qml/DefaultHeader.qml:30
 msgid "Clear Memory"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:32
+#: ../qml/DefaultHeader.qml:37
 msgid "About Calcomatrice"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:37
+#: ../qml/DefaultHeader.qml:42
 msgid "Help"
 msgstr ""
 
