@@ -31,7 +31,7 @@
 class MatrixBackend: public QObject {
 	Q_OBJECT
 
-	Matrix* lastResult = nullptr;
+	bool evalFailed = false;
 	std::map<std::string, Matrix*> matrixMemory;
 
 	bool isValidMatrixName(char* name);
@@ -46,6 +46,9 @@ public:
 	Q_INVOKABLE void clearMemory();
 
 	Q_INVOKABLE bool evaluateExpression(QVariant expr);
+
+signals:
+	void memoryChanged();
 };
 
 #endif

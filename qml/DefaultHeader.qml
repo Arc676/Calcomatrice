@@ -14,6 +14,9 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
+
+import MatrixBackend 1.0
 
 PageHeader {
 	id: header
@@ -23,8 +26,10 @@ PageHeader {
 		actions: [
 			Action {
 				iconName: "reset"
-				visible: pageViewer.depth === 1
+				visible: true
 				text: i18n.tr("Clear Memory")
+
+				onTriggered: PopupUtils.open(confirmClearDialog, pageViewer.currentItem, {})
 			},
 			Action {
 				iconName: "info"
@@ -37,5 +42,15 @@ PageHeader {
 				text: i18n.tr("Help")
 			}
 		]
+	}
+
+	Component {
+		id: confirmClearDialog
+
+		ConfirmDialog {
+			onClearMemory: {
+				MatrixBackend.clearMemory()
+			}
+		}
 	}
 }

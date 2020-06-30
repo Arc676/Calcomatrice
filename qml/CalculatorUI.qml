@@ -16,7 +16,18 @@ import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
 
+import MatrixBackend 1.0
+
 Rectangle {
 	id: calculatorUI
 	anchors.fill: parent
+
+	Component.onCompleted: {
+		MatrixBackend.initMemory()
+	}
+
+	Component.onDestruction: {
+		console.log("calculator view destroyed!")
+		MatrixBackend.clearMemory()
+	}
 }

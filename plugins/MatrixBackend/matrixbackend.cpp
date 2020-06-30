@@ -25,6 +25,7 @@ void MatrixBackend::clearMemory() {
 		matrix_destroyMatrix(it->second);
 		matrixMemory.erase(it++);
 	}
+	emit memoryChanged();
 }
 
 Matrix* MatrixBackend::getMatrixWithName(char* name) {
@@ -32,7 +33,7 @@ Matrix* MatrixBackend::getMatrixWithName(char* name) {
         if (matrixMemory.find(cppname) != matrixMemory.end()) {
                 return matrixMemory[cppname];
         }
-        return 0;
+        return nullptr;
 }
 
 void MatrixBackend::saveMatrixWithName(char* name, Matrix* m) {
@@ -47,14 +48,14 @@ bool MatrixBackend::isValidMatrixName(char* name) {
         char c = name[0];
         if (isalpha(c)) {
                 if (c != 'i' && c != 'm' && c != 't'&& c != 'd' && c != 'c') {
-                        return 1;
+                        return true;
                 }
         }
-        return 0;
+        return false;
 }
 
 Matrix* MatrixBackend::eval(char* expr, char** progress) {
-        evalFailed = 0;
+        evalFailed = false;
         Matrix* res = 0;
         char* saveptr;
         if (progress) {
@@ -67,12 +68,12 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                 case '*':
                 {
                         Matrix* left = eval(expr, &saveptr);
-                        if (evalFailed) return NULL;
+                        if (evalFailed) return nullptr;
 
                         Matrix* right = eval(expr, &saveptr);
                         if (evalFailed) {
                                 matrix_destroyMatrix(left);
-                                return NULL;
+                                return nullptr;
                         }
 
                         if (token[0] == '-') {
@@ -96,7 +97,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                         double scalar = (double)strtod(token, (char**)NULL);
 
                         Matrix* m1 = eval(expr, &saveptr);
-                        if (evalFailed) return NULL;
+                        if (evalFailed) return nullptr;
 
                         res = matrix_createMatrix(m1->rows, m1->cols);
                         matrix_multiplyScalar(res, m1, scalar);
@@ -106,7 +107,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                 case '^':
                 {
                         Matrix* m1 = eval(expr, &saveptr);
-                        if (evalFailed) return NULL;
+                        if (evalFailed) return nullptr;
 
                         token = PARSE_TOKEN(NULL, &saveptr);
                         int power = (int)strtol(token, (char**)NULL, 0);
@@ -140,7 +141,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                                 res = matrix_createIdentityMatrix(size);
                         } else {
                                 Matrix* m1 = eval(expr, &saveptr);
-                                if (evalFailed) return NULL;
+                                if (evalFailed) return nullptr;
 
                                 Matrix* minors = matrix_createMatrix(m1->rows, m1->cols);
                                 Matrix* cofactors = matrix_createMatrix(m1->rows, m1->cols);
@@ -169,29 +170,11 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                 case 't':
                 {
                         Matrix* m1 = eval(expr, &saveptr);
-                        if (evalFailed) return NULL;
+                        if (evalFailed) return nullptr;
 
                         res = matrix_createMatrix(m1->cols, m1->rows);
                         matrix_transpose(res, m1);
                         matrix_destroyMatrix(m1);
-                        break;
-                }
-                case '?':
-                {
-                        res = inputMatrix();
-                        break;
-                }
-                case '=':
-                {
-                        token = PARSE_TOKEN(NULL, &saveptr);
-                        if (!isValidMatrixName(token)) {
-                                evalFailed = 1;
-                                return NULL;
-                        }
-                        res = eval(expr, &saveptr);
-                        if (evalFailed) return NULL;
-
-                        saveMatrixWithName(token, matrix_copyMatrix(res));
                         break;
                 }
                 default:
@@ -200,8 +183,8 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                         }
                         Matrix* stored = getMatrixWithName(token);
                         if (!stored) {
-                                evalFailed = 1;
-                                return NULL;
+                                evalFailed = true;
+                                return nullptr;
                         }
                         res = matrix_copyMatrix(stored);
                         break;
