@@ -24,29 +24,22 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "libmatrix.h"
+#include "memory.h"
 
 #define PARSE_TOKEN(expr, ptr) strtok_r(expr, " ", ptr)
 
 class MatrixBackend: public QObject {
 	Q_OBJECT
 
-	bool evalFailed = false;
-	std::map<std::string, Matrix*> matrixMemory;
+	Q_PROPERTY(Memory* mem READ matrixMemory)
+	Memory memory;
 
-	bool isValidMatrixName(char* name);
-	Matrix* getMatrixWithName(char* name);
-	void saveMatrixWithName(char* name, Matrix* m);
+	bool evalFailed = false;
 
 	Matrix* eval(char* expr, char** progress);
 
 public:
-	Q_INVOKABLE void initMemory();
-
-	Q_INVOKABLE void clearMemory();
-
-signals:
-	void memoryChanged();
+	Memory* matrixMemory();
 };
 
 #endif

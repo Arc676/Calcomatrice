@@ -16,42 +16,8 @@
 #include <QDebug>
 #include "matrixbackend.h"
 
-void MatrixBackend::initMemory() {
-	matrixMemory = std::map<std::string, Matrix*>();
-}
-
-void MatrixBackend::clearMemory() {
-	for (auto it = matrixMemory.cbegin(); it != matrixMemory.cend();) {
-		matrix_destroyMatrix(it->second);
-		matrixMemory.erase(it++);
-	}
-	emit memoryChanged();
-}
-
-Matrix* MatrixBackend::getMatrixWithName(char* name) {
-        std::string cppname(name);
-        if (matrixMemory.find(cppname) != matrixMemory.end()) {
-                return matrixMemory[cppname];
-        }
-        return nullptr;
-}
-
-void MatrixBackend::saveMatrixWithName(char* name, Matrix* m) {
-        std::string cppname(name);
-        if (matrixMemory.find(cppname) != matrixMemory.end()) {
-                matrix_destroyMatrix(matrixMemory[cppname]);
-        }
-        matrixMemory[cppname] = m;
-}
-
-bool MatrixBackend::isValidMatrixName(char* name) {
-        char c = name[0];
-        if (isalpha(c)) {
-                if (c != 'i' && c != 'm' && c != 't'&& c != 'd' && c != 'c') {
-                        return true;
-                }
-        }
-        return false;
+Memory* MatrixBackend::matrixMemory() {
+	return &memory;
 }
 
 Matrix* MatrixBackend::eval(char* expr, char** progress) {
@@ -178,10 +144,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
                         break;
                 }
                 default:
-                        if (token[strlen(token) - 1] == '\n') {
-                                token[strlen(token) - 1] = '\0';
-                        }
-                        Matrix* stored = getMatrixWithName(token);
+                        Matrix* stored = memory.getMatrixWithName(token);
                         if (!stored) {
                                 evalFailed = true;
                                 return nullptr;
