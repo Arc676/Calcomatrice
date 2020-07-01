@@ -25,6 +25,13 @@ PageHeader {
 	trailingActionBar {
 		actions: [
 			Action {
+				iconName: "view-list-symbolic"
+				visible: pageViewer.depth === 1
+				text: i18n.tr("View Stored Matrices")
+
+				onTriggered: pageStack.push(pageStack.memoryPage)
+			},
+			Action {
 				iconName: "reset"
 				visible: true
 				text: i18n.tr("Clear Memory")
@@ -35,11 +42,14 @@ PageHeader {
 				iconName: "info"
 				visible: pageViewer.depth === 1
 				text: i18n.tr("About Calcomatrice")
+
+				onTriggered: pageStack.push(Qt.resolvedUrl("About.qml"))
 			},
 			Action {
 				iconName: "help"
 				visible: pageViewer.depth === 1
 				text: i18n.tr("Help")
+				onTriggered: pageStack.push(Qt.resolvedUrl("Help.qml"))
 			}
 		]
 	}
@@ -49,7 +59,7 @@ PageHeader {
 
 		ConfirmDialog {
 			onClearMemory: {
-				MatrixBackend.clearMemory()
+				MatrixBackend.memory.clearMemory()
 			}
 		}
 	}

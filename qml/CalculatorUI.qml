@@ -23,11 +23,11 @@ Rectangle {
 	anchors.fill: parent
 
 	Component.onCompleted: {
-		MatrixBackend.initMemory()
+		MatrixBackend.memory.initMemory()
 	}
 
 	Component.onDestruction: {
 		console.log("calculator view destroyed!")
-		MatrixBackend.clearMemory()
+		MatrixBackend.memory.clearMemory()
 	}
 }

@@ -34,6 +34,10 @@ MainView {
 			visible: false
 		}
 
+		property MemoryUI memoryPage: MemoryUI {
+			visible: false
+		}
+
 		Component.onCompleted: {
 			pageViewer.clear()
 			pageViewer.push(mainUI)
