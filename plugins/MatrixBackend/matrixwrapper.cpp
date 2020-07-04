@@ -13,16 +13,27 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 // See README and LICENSE for more details
 
+MatrixWrapper::MatrixWrapper() : matrix(nullptr) {}
+
 MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {}
 
 int MatrixWrapper::rowCount() const {
-	return matrix->rows;
+	if (matrix) {
+		return matrix->rows;
+	}
+	return 0;
 }
 
 int MatrixWrapper::colCount() const {
-	return matrix->cols;
+	if (matrix) {
+		return matrix->cols;
+	}
+	return 0;
 }
 
 float MatrixWrapper::at(int row, int col) const {
-	return matrix->matrix[row][col];
+	if (matrix) {
+		return matrix->matrix[row][col];
+	}
+	return 0;
 }

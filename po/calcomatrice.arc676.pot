@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 19:40+0000\n"
+"POT-Creation-Date: 2020-07-04 08:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,58 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../qml/About.qml:40
+msgid "written by Arc676/Alessandro Vinciguerra. Project available under"
+msgstr ""
+
+#: ../qml/About.qml:44
+msgid ""
+"This program is free software: you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation (version 3)."
+msgstr ""
+
+#: ../qml/About.qml:48
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for "
+"more details."
+msgstr ""
+
+#: ../qml/About.qml:52
+msgid ""
+"For the full license text, visit the <a href='https://github.com/Arc676/"
+"Calcomatrice'>repository</a> or the <a href='http://www.gnu.org/"
+"licenses/'>GNU licenses page</a>"
+msgstr ""
+
+#: ../qml/About.qml:56
+msgid "Public Domain Assets"
+msgstr ""
+
+#: ../qml/About.qml:61
+msgid ""
+"Application icon by <a href='https://twitter.com/theberzi'>@theberzi</a>"
+msgstr ""
+
 #: ../qml/DefaultHeader.qml:23 calcomatrice.desktop.in.h:1
 msgid "Calcomatrice"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:30
-msgid "Clear Memory"
+msgid "View Stored Matrices"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:37
+msgid "Clear Memory"
+msgstr ""
+
+#: ../qml/DefaultHeader.qml:44
 msgid "About Calcomatrice"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:42
+#: ../qml/DefaultHeader.qml:51
 msgid "Help"
 msgstr ""
 

@@ -28,6 +28,7 @@ class MatrixWrapper : public QObject {
 
 	Matrix* matrix;
 public:
+	MatrixWrapper();
 	MatrixWrapper(Matrix* mat);
 
 	int rowCount() const;
