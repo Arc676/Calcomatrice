@@ -18,16 +18,17 @@ import Ubuntu.Components 1.3
 
 import MatrixBackend 1.0
 
-Rectangle {
+Page {
 	id: calculatorUI
 	anchors.fill: parent
+
+	header: DefaultHeader {}
 
 	Component.onCompleted: {
 		MatrixBackend.memory.initMemory()
 	}
 
 	Component.onDestruction: {
-		console.log("calculator view destroyed!")
 		MatrixBackend.memory.clearMemory()
 	}
 }

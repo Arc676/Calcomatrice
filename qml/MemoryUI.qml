@@ -18,7 +18,9 @@ import Ubuntu.Components 1.3
 
 import MatrixBackend 1.0
 
-Rectangle {
+Page {
 	id: memoryUI
 	anchors.fill: parent
+
+	header: DefaultHeader {}
 }

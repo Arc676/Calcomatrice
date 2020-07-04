@@ -27,6 +27,7 @@ Dialog {
 	Button {
 		id: confirm
 		text: i18n.tr("Yes, delete them")
+		color: theme.palette.normal.negative
 		onClicked: {
 			dialog.clearMemory()
 			PopupUtils.close(dialog)
