@@ -13,9 +13,15 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 // See README and LICENSE for more details
 
+#include "matrixwrapper.h"
+
 MatrixWrapper::MatrixWrapper() : matrix(nullptr) {}
 
 MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {}
+
+const Matrix* MatrixWrapper::getMatrix() const {
+	return matrix;
+}
 
 int MatrixWrapper::rowCount() const {
 	if (matrix) {

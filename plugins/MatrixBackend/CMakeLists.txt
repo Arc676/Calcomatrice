@@ -5,6 +5,8 @@ set(
     SRC
     plugin.cpp
     matrixbackend.cpp
+    matrixwrapper.cpp
+    memory.cpp
 )
 
 set(CMAKE_AUTOMOC ON)

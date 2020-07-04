@@ -49,7 +49,7 @@ public:
 	Q_INVOKABLE void initMemory();
 	Q_INVOKABLE void clearMemory();
 
-	Q_INVOKABLE void reloadTable() const;
+	Q_INVOKABLE void reloadTable();
 };
 
 #endif

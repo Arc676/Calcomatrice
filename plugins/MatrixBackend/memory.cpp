@@ -28,7 +28,7 @@ QVariant Memory::data(const QModelIndex &index, int role) const {
 	if (role == NameCol) {
 		return matrixNames[row];
 	} else {
-		return MatrixWrapper(storedMatrices[row]);
+		return 0; //MatrixWrapper(storedMatrices[row]);
 	}
 }
 
@@ -45,7 +45,7 @@ void Memory::initMemory() {
 }
 
 void Memory::clearMemory() {
-	for (auto it = storedMatrices.cbegin(); it != storedMatrices.cend();) {
+	for (auto it = storedMatrices.begin(); it != storedMatrices.end();) {
 		matrix_destroyMatrix(*it);
 		storedMatrices.erase(it++);
 	}
@@ -53,20 +53,20 @@ void Memory::clearMemory() {
 	reloadTable();
 }
 
-bool Memory::matrixExists(QString name) {
+bool Memory::matrixExists(QString name) const {
 	return matrixNames.indexOf(name) != -1;
 }
 
-Matrix* Memory::getMatrixWithName(char* name) {
-        QString qname(name);
+Matrix* Memory::getMatrixWithName(char* name) const {
+	QString qname(name);
 	int idx = matrixNames.indexOf(qname);
-        if (idx >= 0) {
-                return storedMatrices[idx];
-        }
-        return nullptr;
+	if (idx >= 0) {
+			return storedMatrices[idx];
+	}
+	return nullptr;
 }
 
-void Memory::eraseMatrixWithName(Qstring name) {
+void Memory::eraseMatrixWithName(QString name) {
 	int idx = matrixNames.indexOf(name);
 	matrixNames.erase(matrixNames.begin() + idx);
 	storedMatrices.erase(storedMatrices.begin() + idx);
@@ -75,18 +75,18 @@ void Memory::eraseMatrixWithName(Qstring name) {
 
 void Memory::saveMatrixWithName(QString name, MatrixWrapper* matrix) {
 	int idx = matrixNames.indexOf(name);
-        if (idx >= 0) {
-                matrix_destroyMatrix(matrixMemory[idx]);
-		matrixMemory[idx] = m;
-        } else {
+	Matrix* mat = matrix_copyMatrix(matrix->getMatrix());
+	if (idx >= 0) {
+		matrix_destroyMatrix(storedMatrices[idx]);
+		storedMatrices[idx] = mat;
+	} else {
 		matrixNames.push_back(name);
-		Matrix* mat = matrix_copyMatrix(matrix->matrix);
 		storedMatrices.push_back(mat);
 	}
 	reloadTable();
 }
 
-void Memory::reloadTable() const {
+void Memory::reloadTable() {
 	beginResetModel();
 	endResetModel();
 }

@@ -31,6 +31,8 @@ public:
 	MatrixWrapper();
 	MatrixWrapper(Matrix* mat);
 
+	const Matrix* getMatrix() const;
+
 	int rowCount() const;
 	int colCount() const;
 	Q_INVOKABLE float at(int row, int col) const;
