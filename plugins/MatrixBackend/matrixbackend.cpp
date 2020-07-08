@@ -16,6 +16,7 @@
 #include <QDebug>
 #include "matrixbackend.h"
 
+MatrixBackend* MatrixBackend::instance = nullptr;
 bool MatrixBackend::evalFailed = false;
 
 Memory* MatrixBackend::matrixMemory() {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-08 08:39+0000\n"
+"POT-Creation-Date: 2020-07-08 17:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,18 +57,22 @@ msgid "Calcomatrice"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:30
-msgid "View Stored Matrices"
+msgid "New Matrix"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:37
-msgid "Clear Memory"
+msgid "View Stored Matrices"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:44
-msgid "About Calcomatrice"
+msgid "Clear Memory"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:51
+msgid "About Calcomatrice"
+msgstr ""
+
+#: ../qml/DefaultHeader.qml:58
 msgid "Help"
 msgstr ""
 

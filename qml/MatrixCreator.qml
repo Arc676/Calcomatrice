@@ -1,4 +1,4 @@
-// Copyright (C) 2019-20 Arc676/Alessandro Vinciguerra <alesvinciguerra@gmail.com>
+// Copyright (C) 2020 Arc676/Alessandro Vinciguerra <alesvinciguerra@gmail.com>
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,35 +16,11 @@ import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
 
-MainView {
-	id: root
-	objectName: 'mainView'
-	applicationName: 'calcomatrice.arc676'
-	automaticOrientation: true
+import MatrixBackend 1.0
 
-	width: units.gu(45)
-	height: units.gu(75)
-	property real margin: units.gu(2)
+Page {
+	id: matrixCreator
+	anchors.fill: parent
 
-	PageStack {
-		id: pageViewer
-		anchors.fill: parent
-
-		property CalculatorUI mainUI: CalculatorUI {
-			visible: false
-		}
-
-		property MemoryUI memoryPage: MemoryUI {
-			visible: false
-		}
-
-		property MatrixCreator matrixCreatorPage: MatrixCreator {
-			visible: false
-		}
-
-		Component.onCompleted: {
-			pageViewer.clear()
-			pageViewer.push(mainUI)
-		}
-	}
+	header: DefaultHeader {}
 }

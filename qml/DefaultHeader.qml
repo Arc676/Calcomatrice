@@ -25,6 +25,13 @@ PageHeader {
 	trailingActionBar {
 		actions: [
 			Action {
+				iconName: "add"
+				visible: true
+				text: i18n.tr("New Matrix")
+
+				onTriggered: pageStack.push(pageStack.matrixCreatorPage)
+			},
+			Action {
 				iconName: "view-list-symbolic"
 				visible: pageViewer.depth === 1
 				text: i18n.tr("View Stored Matrices")
