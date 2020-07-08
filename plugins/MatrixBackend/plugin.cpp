@@ -21,7 +21,7 @@
 
 void MatrixBackendPlugin::registerTypes(const char *uri) {
 	//@uri MatrixBackend
-	qmlRegisterSingletonType<MatrixBackend>(uri, 1, 0, "MatrixBackend", [](QQmlEngine*, QJSEngine*) -> QObject* { return new MatrixBackend; });
+	qmlRegisterSingletonType<MatrixBackend>(uri, 1, 0, "MatrixBackend", &MatrixBackend::qmlInstance);
 	qmlRegisterType<Memory>(uri, 1, 0, "Memory");
 	qmlRegisterType<MatrixWrapper>(uri, 1, 0, "Matrix");
 }

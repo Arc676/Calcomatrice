@@ -17,6 +17,8 @@
 #define MATRIXBACKEND_H
 
 #include <QObject>
+#include <QQmlEngine>
+#include <QJSEngine>
 
 #include <map>
 #include <string>
@@ -31,15 +33,23 @@
 class MatrixBackend: public QObject {
 	Q_OBJECT
 
+	static MatrixBackend* instance;
+
 	Q_PROPERTY(Memory* memory READ matrixMemory)
 	Memory memory;
 
-	bool evalFailed = false;
-
-	Matrix* eval(char* expr, char** progress);
-
+	static bool evalFailed;
 public:
 	Memory* matrixMemory();
+
+	static Matrix* eval(char* expr, char** progress);
+
+	static QObject* qmlInstance(QQmlEngine* engine, QJSEngine* jsEngine) {
+		if (!MatrixBackend::instance) {
+			MatrixBackend::instance = new MatrixBackend;
+		}
+		return MatrixBackend::instance;
+	}
 };
 
 #endif

@@ -37,5 +37,6 @@ public:
 	int colCount() const;
 	Q_INVOKABLE float at(int row, int col) const;
 };
+Q_DECLARE_METATYPE(MatrixWrapper*)
 
 #endif

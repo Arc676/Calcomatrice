@@ -16,6 +16,8 @@
 #include <QDebug>
 #include "matrixbackend.h"
 
+bool MatrixBackend::evalFailed = false;
+
 Memory* MatrixBackend::matrixMemory() {
 	return &memory;
 }
@@ -144,7 +146,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 			break;
 		}
 		default:
-			Matrix* stored = memory.getMatrixWithName(token);
+			Matrix* stored = MatrixBackend::instance->memory.getMatrixWithName(token);
 			if (!stored) {
 				evalFailed = true;
 				return nullptr;

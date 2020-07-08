@@ -28,7 +28,7 @@ QVariant Memory::data(const QModelIndex &index, int role) const {
 	if (role == NameCol) {
 		return matrixNames[row];
 	} else {
-		return 0; //MatrixWrapper(storedMatrices[row]);
+		return QVariant::fromValue<MatrixWrapper*>(new MatrixWrapper(storedMatrices[row]));
 	}
 }
 
