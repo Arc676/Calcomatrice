@@ -39,14 +39,9 @@ Page {
 		}
 		model: MatrixMemory
 		delegate: ListItem {
-			Column {
-				Label {
-					text: matrixName
-				}
-
-				MatrixVisualizer {
-					matrix: matrix
-				}
+			MatrixVisualizer {
+				labelText: matrixName
+				matrix: matrixValue
 			}
 
 			leadingActions: ListItemActions {

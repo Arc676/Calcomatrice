@@ -41,7 +41,7 @@ public:
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 	QHash<int, QByteArray> roleNames() const;
 
-	void emitReset();
+	Q_INVOKABLE void emitReset();
 };
 Q_DECLARE_METATYPE(MatrixWrapper*)
 

@@ -17,14 +17,19 @@
 
 MatrixWrapper::MatrixWrapper() : matrix(nullptr) {}
 
-MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {}
+MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {
+	emitReset();
+}
 
 const Matrix* MatrixWrapper::getMatrix() const {
 	return matrix;
 }
 
 int MatrixWrapper::rowCount(const QModelIndex &parent) const {
-	return rows();
+	if (matrix) {
+		return matrix->rows * matrix->cols;
+	}
+	return 0;
 }
 
 int MatrixWrapper::rows() const {
@@ -59,4 +64,9 @@ QHash<int, QByteArray> MatrixWrapper::roleNames() const {
 	QHash<int, QByteArray> names;
 	names[Qt::UserRole] = "entry";
 	return names;
+}
+
+void MatrixWrapper::emitReset() {
+	beginResetModel();
+	endResetModel();
 }

@@ -18,16 +18,27 @@ import Ubuntu.Components 1.3
 
 import MatrixBackend 1.0
 
-Rectangle {
+Column {
 	id: matrixVisualizer
 
 	property Matrix matrix
+	property var labelText
 
-	Repeater {
-		model: matrix
+	Label {
+		text: labelText
+	}
 
-		Text {
-			text: entry
+	Row {
+		spacing: margin
+
+		Repeater {
+			model: matrix
+
+			Text {
+				text: entry
+			}
 		}
 	}
+
+	Component.onCompleted: matrix.emitReset()
 }

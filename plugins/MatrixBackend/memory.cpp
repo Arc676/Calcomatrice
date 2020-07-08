@@ -37,7 +37,7 @@ QVariant Memory::data(const QModelIndex &index, int role) const {
 QHash<int, QByteArray> Memory::roleNames() const {
 	QHash<int, QByteArray> names;
 	names[NameCol] = "matrixName";
-	names[MatrixCol] = "matrix";
+	names[MatrixCol] = "matrixValue";
 	return names;
 }
 
@@ -46,7 +46,7 @@ void Memory::initMemory() {
 	matrixNames = QVector<QString>();
 
 	// test matrix
-	Matrix* mat = matrix_createMatrixWithElements(2, 2, 1, 2, 3, 4);
+	Matrix* mat = matrix_createMatrixWithElements(2, 2, 1., 2., 3., 4.);
 	storedMatrices.push_back(mat);
 	matrixNames.push_back("Test Matrix");
 	reloadTable();
