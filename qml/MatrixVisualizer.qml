@@ -20,9 +20,8 @@ import MatrixBackend 1.0
 
 Rectangle {
 	id: matrixVisualizer
-	anchors.fill: parent
 
-	property MatrixWrapper matrix
+	property Matrix matrix
 
 	Repeater {
 		model: matrix

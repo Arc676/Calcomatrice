@@ -15,6 +15,8 @@
 
 #include "memory.h"
 
+Memory* Memory::instance = nullptr;
+
 int Memory::columnCount(const QModelIndex &parent) const {
 	return 2;
 }
@@ -34,7 +36,7 @@ QVariant Memory::data(const QModelIndex &index, int role) const {
 
 QHash<int, QByteArray> Memory::roleNames() const {
 	QHash<int, QByteArray> names;
-	names[NameCol] = "name";
+	names[NameCol] = "matrixName";
 	names[MatrixCol] = "matrix";
 	return names;
 }
@@ -47,12 +49,13 @@ void Memory::initMemory() {
 	Matrix* mat = matrix_createMatrixWithElements(2, 2, 1, 2, 3, 4);
 	storedMatrices.push_back(mat);
 	matrixNames.push_back("Test Matrix");
+	reloadTable();
 }
 
 void Memory::clearMemory() {
 	for (auto it = storedMatrices.begin(); it != storedMatrices.end();) {
 		matrix_destroyMatrix(*it);
-		storedMatrices.erase(it++);
+		it = storedMatrices.erase(it);
 	}
 	matrixNames.clear();
 	reloadTable();

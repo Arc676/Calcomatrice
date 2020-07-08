@@ -34,14 +34,8 @@ class MatrixBackend: public QObject {
 	Q_OBJECT
 
 	static MatrixBackend* instance;
-
-	Q_PROPERTY(Memory* memory READ matrixMemory)
-	Memory memory;
-
 	static bool evalFailed;
 public:
-	Memory* matrixMemory();
-
 	static Matrix* eval(char* expr, char** progress);
 
 	static QObject* qmlInstance(QQmlEngine* engine, QJSEngine* jsEngine) {

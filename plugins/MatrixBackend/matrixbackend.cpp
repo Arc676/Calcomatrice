@@ -19,10 +19,6 @@
 MatrixBackend* MatrixBackend::instance = nullptr;
 bool MatrixBackend::evalFailed = false;
 
-Memory* MatrixBackend::matrixMemory() {
-	return &memory;
-}
-
 Matrix* MatrixBackend::eval(char* expr, char** progress) {
 	evalFailed = false;
 	Matrix* res = 0;
@@ -147,7 +143,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 			break;
 		}
 		default:
-			Matrix* stored = MatrixBackend::instance->memory.getMatrixWithName(token);
+			Matrix* stored = ((Memory*)Memory::qmlInstance)->getMatrixWithName(token);
 			if (!stored) {
 				evalFailed = true;
 				return nullptr;

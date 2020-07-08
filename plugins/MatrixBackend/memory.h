@@ -22,6 +22,9 @@
 #include <QString>
 #include <QVariant>
 
+#include <QQmlEngine>
+#include <QJSEngine>
+
 #include "matrixwrapper.h"
 
 class Memory : public QAbstractTableModel {
@@ -34,7 +37,16 @@ class Memory : public QAbstractTableModel {
 		NameCol = Qt::UserRole,
 		MatrixCol
 	};
+
+	static Memory* instance;
 public:
+	static QObject* qmlInstance(QQmlEngine* engine, QJSEngine* jsEngine) {
+		if (!Memory::instance) {
+			Memory::instance = new Memory;
+		}
+		return Memory::instance;
+	}
+
 	int columnCount(const QModelIndex &parent) const;
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
