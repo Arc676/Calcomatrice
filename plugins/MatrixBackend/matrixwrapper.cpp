@@ -23,18 +23,29 @@ const Matrix* MatrixWrapper::getMatrix() const {
 	return matrix;
 }
 
-int MatrixWrapper::rowCount() const {
+int MatrixWrapper::rowCount(const QModelIndex &parent) const {
+	return rows();
+}
+
+int MatrixWrapper::rows() const {
 	if (matrix) {
 		return matrix->rows;
 	}
 	return 0;
 }
 
-int MatrixWrapper::colCount() const {
+int MatrixWrapper::cols() const {
 	if (matrix) {
 		return matrix->cols;
 	}
 	return 0;
+}
+
+QVariant MatrixWrapper::data(const QModelIndex &index, int role) const {
+	int idx1D = index.row();
+	int row = idx1D / rows();
+	int col = idx1D % rows();
+	return at(row, col);
 }
 
 float MatrixWrapper::at(int row, int col) const {
@@ -42,4 +53,10 @@ float MatrixWrapper::at(int row, int col) const {
 		return matrix->matrix[row][col];
 	}
 	return 0;
+}
+
+QHash<int, QByteArray> MatrixWrapper::roleNames() const {
+	QHash<int, QByteArray> names;
+	names[Qt::UserRole] = "entry";
+	return names;
 }

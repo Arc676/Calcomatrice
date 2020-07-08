@@ -16,15 +16,17 @@
 #ifndef MATRIX_WRAPPER_H
 #define MATRIX_WRAPPER_H
 
-#include <QObject>
+#include <QAbstractListModel>
 
 #include "libmatrix.h"
 
-class MatrixWrapper : public QObject {
+class MatrixWrapper : public QAbstractListModel {
 	Q_OBJECT
 
-	Q_PROPERTY(int rows READ rowCount);
-	Q_PROPERTY(int cols READ colCount);
+	Q_PROPERTY(int rows READ rows);
+	Q_PROPERTY(int cols READ cols);
+	int rows() const;
+	int cols() const;
 
 	Matrix* matrix;
 public:
@@ -33,9 +35,13 @@ public:
 
 	const Matrix* getMatrix() const;
 
-	int rowCount() const;
-	int colCount() const;
 	Q_INVOKABLE float at(int row, int col) const;
+
+	int rowCount(const QModelIndex &parent = QModelIndex()) const;
+	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+	QHash<int, QByteArray> roleNames() const;
+
+	void emitReset();
 };
 Q_DECLARE_METATYPE(MatrixWrapper*)
 

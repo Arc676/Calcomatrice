@@ -42,6 +42,11 @@ QHash<int, QByteArray> Memory::roleNames() const {
 void Memory::initMemory() {
 	storedMatrices = QVector<Matrix*>();
 	matrixNames = QVector<QString>();
+
+	// test matrix
+	Matrix* mat = matrix_createMatrixWithElements(2, 2, 1, 2, 3, 4);
+	storedMatrices.push_back(mat);
+	matrixNames.push_back("Test Matrix");
 }
 
 void Memory::clearMemory() {

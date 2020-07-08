@@ -18,52 +18,17 @@ import Ubuntu.Components 1.3
 
 import MatrixBackend 1.0
 
-Page {
-	id: memoryUI
+Rectangle {
+	id: matrixVisualizer
 	anchors.fill: parent
 
-	header: DefaultHeader {}
+	property MatrixWrapper matrix
 
-	ListView {
-		id: memoryList
-		clip: true
-		anchors.fill: parent
-		model: MatrixBackend.memory
-		delegate: ListItem {
-			Column {
-				Label {
-					text: name
-				}
+	Repeater {
+		model: matrix
 
-				MatrixVisualizer {
-					matrix: matrix
-				}
-
-				leadingActions: ListItemActions {
-					actions: [
-						Action {
-							iconName: "delete"
-
-							onTriggered: MatrixBackend.memory.eraseMatrixWithName(name)
-						}
-					]
-				}
-
-				trailingActions: ListItemActions {
-					actions: [
-						Action {
-							iconName: "tag"
-
-							onTriggered: {} // rename matrix
-						},
-						Action {
-							iconName: "edit"
-
-							onTriggered: {} // edit matrix
-						}
-					]
-				}
-			}
+		Text {
+			text: entry
 		}
 	}
 }
