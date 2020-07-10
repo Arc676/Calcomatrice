@@ -27,10 +27,12 @@ int Memory::rowCount(const QModelIndex &parent) const {
 
 QVariant Memory::data(const QModelIndex &index, int role) const {
 	int row = index.row();
+	QString humanReadableName = matrixNames.keys()[row];
 	if (role == NameCol) {
-		return matrixNames[row];
+		return humanReadableName;
 	} else {
-		return QVariant::fromValue<MatrixWrapper*>(new MatrixWrapper(storedMatrices[row]));
+		QString internalName = matrixNames[humanReadableName];
+		return QVariant::fromValue<MatrixWrapper*>(new MatrixWrapper(storedMatrices[internalName]));
 	}
 }
 
@@ -42,8 +44,8 @@ QHash<int, QByteArray> Memory::roleNames() const {
 }
 
 void Memory::initMemory() {
-	storedMatrices = QVector<Matrix*>();
-	matrixNames = QVector<QString>();
+	storedMatrices = QMap<QString, Matrix*>();
+	matrixNames = QMap<QString, QString>();
 }
 
 void Memory::clearMemory() {
@@ -56,35 +58,41 @@ void Memory::clearMemory() {
 }
 
 bool Memory::matrixExists(QString name) const {
-	return matrixNames.indexOf(name) != -1;
+	return matrixNames.find(name) != matrixNames.end();
 }
 
 Matrix* Memory::getMatrixWithName(char* name) const {
 	QString qname(name);
-	int idx = matrixNames.indexOf(qname);
-	if (idx >= 0) {
-			return storedMatrices[idx];
+	if (matrixExists(qname)) {
+			return storedMatrices[qname];
 	}
 	return nullptr;
 }
 
 void Memory::eraseMatrixWithName(QString name) {
-	int idx = matrixNames.indexOf(name);
-	matrixNames.erase(matrixNames.begin() + idx);
-	storedMatrices.erase(storedMatrices.begin() + idx);
+	QString internalName = matrixNames[name];
+	matrixNames.remove(name);
+	storedMatrices.remove(internalName);
 	reloadTable();
 }
 
 void Memory::saveMatrixWithName(QString name, MatrixWrapper* matrix) {
-	int idx = matrixNames.indexOf(name);
 	Matrix* mat = matrix_copyMatrix(matrix->getMatrix());
-	if (idx >= 0) {
-		matrix_destroyMatrix(storedMatrices[idx]);
-		storedMatrices[idx] = mat;
+	if (matrixExists(name)) {
+		QString internalName = matrixNames[name];
+		matrix_destroyMatrix(storedMatrices[internalName]);
+		storedMatrices[internalName] = mat;
 	} else {
-		matrixNames.push_back(name);
-		storedMatrices.push_back(mat);
+		QString internalName = QString("UserMatrix%1").arg(matrixCount++);
+		matrixNames[name] = internalName;
+		storedMatrices[internalName] = mat;
 	}
+	reloadTable();
+}
+
+void Memory::renameMatrix(QString oldName, QString newName) {
+	matrixNames[newName] = matrixNames[oldName];
+	matrixNames.remove(oldName);
 	reloadTable();
 }
 

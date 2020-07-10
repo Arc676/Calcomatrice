@@ -17,8 +17,7 @@
 #define MEMORY_H
 
 #include <QAbstractTableModel>
-#include <QList>
-#include <QVector>
+#include <QMap>
 #include <QString>
 #include <QVariant>
 
@@ -30,8 +29,9 @@
 class Memory : public QAbstractTableModel {
 	Q_OBJECT
 
-	QVector<Matrix*> storedMatrices;
-	QVector<QString> matrixNames;
+	QMap<QString, Matrix*> storedMatrices;
+	QMap<QString, QString> matrixNames;
+	int matrixCount = 0;
 
 	enum {
 		NameCol = Qt::UserRole,
@@ -55,6 +55,8 @@ public:
 	Q_INVOKABLE bool matrixExists(QString name) const;
 	Q_INVOKABLE void saveMatrixWithName(QString name, MatrixWrapper* matrix);
 	Q_INVOKABLE void eraseMatrixWithName(QString name);
+
+	Q_INVOKABLE void renameMatrix(QString oldName, QString newName);
 
 	Matrix* getMatrixWithName(char* name) const;
 
