@@ -26,17 +26,17 @@ PageHeader {
 		actions: [
 			Action {
 				iconName: "add"
-				visible: true
+				visible: pageViewer.currentPage !== pageViewer.matrixCreatorPage
 				text: i18n.tr("New Matrix")
 
-				onTriggered: pageStack.push(pageStack.matrixCreatorPage)
+				onTriggered: pageViewer.push(pageViewer.matrixCreatorPage)
 			},
 			Action {
 				iconName: "view-list-symbolic"
 				visible: pageViewer.depth === 1
 				text: i18n.tr("View Stored Matrices")
 
-				onTriggered: pageStack.push(pageStack.memoryPage)
+				onTriggered: pageViewer.push(pageViewer.memoryPage)
 			},
 			Action {
 				iconName: "reset"
@@ -50,13 +50,14 @@ PageHeader {
 				visible: pageViewer.depth === 1
 				text: i18n.tr("About Calcomatrice")
 
-				onTriggered: pageStack.push(Qt.resolvedUrl("About.qml"))
+				onTriggered: pageViewer.push(Qt.resolvedUrl("About.qml"))
 			},
 			Action {
 				iconName: "help"
 				visible: pageViewer.depth === 1
 				text: i18n.tr("Help")
-				onTriggered: pageStack.push(Qt.resolvedUrl("Help.qml"))
+
+				onTriggered: pageViewer.push(Qt.resolvedUrl("Help.qml"))
 			}
 		]
 	}
@@ -66,7 +67,7 @@ PageHeader {
 
 		ConfirmDialog {
 			onClearMemory: {
-				MatrixBackend.memory.clearMemory()
+				MatrixMemory.clearMemory()
 			}
 		}
 	}
