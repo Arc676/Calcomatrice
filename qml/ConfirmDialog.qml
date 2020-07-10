@@ -22,7 +22,8 @@ Dialog {
 
 	signal clearMemory()
 
-	text: i18n.tr("Are you sure you want to clear the memory? You will lose all saved matrices.")
+	title: i18n.tr("Warning")
+	text: i18n.tr("Are you sure you want to clear all saved matrices? This cannot be undone.")
 
 	Button {
 		id: confirm

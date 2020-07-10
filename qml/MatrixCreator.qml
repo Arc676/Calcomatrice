@@ -15,6 +15,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
 import MatrixBackend 1.0
 
@@ -26,6 +27,11 @@ Page {
 
 	function loadMatrix(matrix) {
 		visualizer.matrix.loadMatrix(matrix)
+	}
+
+	Component {
+		id: errorDialog
+		NameErrorDialog {}
 	}
 
 	Column {
@@ -108,9 +114,11 @@ Page {
 			Button {
 				text: i18n.tr("Save")
 				onClicked: {
-					var matName = matrixName.text
-					if (matName.length > 0) {
+					var matName = matrixName.text.trim()
+					if (matName.length > 0 && !/^\d/.test(matName)) {
 						MatrixMemory.saveMatrixWithName(matName, visualizer.matrix)
+					} else {
+						PopupUtils.open(errorDialog)
 					}
 				}
 			}

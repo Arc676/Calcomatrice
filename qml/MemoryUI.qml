@@ -26,7 +26,7 @@ Page {
 	header: DefaultHeader {}
 
 	Component {
-		id: compRenameDialog
+		id: renameDialog
 		RenameDialog {}
 	}
 
@@ -69,7 +69,7 @@ Page {
 						iconName: "tag"
 
 						onTriggered: {
-							PopupUtils.open(compRenameDialog, memoryUI, {"oldName" : matrixName})
+							PopupUtils.open(renameDialog, memoryUI, {"oldName" : matrixName})
 						}
 					},
 					Action {

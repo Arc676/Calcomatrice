@@ -16,33 +16,16 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
-import MatrixBackend 1.0
-
 Dialog {
 	id: dialog
-	objectName: "renameDialog"
+	objectName: "nameErrorDialog"
 
-	property var oldName
-
-	title: i18n.tr("Rename Matrix")
-	text: i18n.tr("Enter new matrix name")
-
-	TextField {
-		id: nameField
-	}
+	title: i18n.tr("Error")
+	text: i18n.tr("Matrix names cannot be empty or start with a digit.")
 
 	Button {
-		id: confirm
-		text: i18n.tr("Rename matrix")
-		onClicked: {
-			MatrixMemory.renameMatrix(oldName, nameField.text)
-			PopupUtils.close(dialog)
-		}
-	}
-
-	Button {
-		id: cancel
-		text: i18n.tr("Cancel")
+		id: okBtn
+		text: i18n.tr("OK")
 		onClicked: {
 			PopupUtils.close(dialog)
 		}

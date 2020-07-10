@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 16:09+0000\n"
+"POT-Creation-Date: 2020-07-10 16:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/MatrixCreator.qml:48
+#: ../qml/MatrixCreator.qml:54
 msgid "Rows"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:60
+#: ../qml/MatrixCreator.qml:66
 msgid "Columns"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:69
+#: ../qml/MatrixCreator.qml:75
 msgid "Create matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:87
+#: ../qml/MatrixCreator.qml:93
 msgid "Zero matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:93
+#: ../qml/MatrixCreator.qml:99
 msgid "Identity matrix (square matrices only)"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:101
+#: ../qml/MatrixCreator.qml:107
 msgid "Matrix name"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:109
+#: ../qml/MatrixCreator.qml:115
 msgid "Save"
 msgstr ""
 
@@ -80,6 +80,18 @@ msgid ""
 "Application icon by <a href='https://twitter.com/theberzi'>@theberzi</a>"
 msgstr ""
 
+#: ../qml/NameErrorDialog.qml:23
+msgid "Error"
+msgstr ""
+
+#: ../qml/NameErrorDialog.qml:24
+msgid "Matrix names cannot be empty or start with a digit."
+msgstr ""
+
+#: ../qml/NameErrorDialog.qml:28
+msgid "OK"
+msgstr ""
+
 #: ../qml/DefaultHeader.qml:23 calcomatrice.desktop.in.h:1
 msgid "Calcomatrice"
 msgstr ""
@@ -105,22 +117,30 @@ msgid "Help"
 msgstr ""
 
 #: ../qml/RenameDialog.qml:27
+msgid "Rename Matrix"
+msgstr ""
+
+#: ../qml/RenameDialog.qml:28
 msgid "Enter new matrix name"
 msgstr ""
 
-#: ../qml/RenameDialog.qml:35
+#: ../qml/RenameDialog.qml:36
 msgid "Rename matrix"
 msgstr ""
 
-#: ../qml/RenameDialog.qml:44 ../qml/ConfirmDialog.qml:39
+#: ../qml/RenameDialog.qml:45 ../qml/ConfirmDialog.qml:40
 msgid "Cancel"
 msgstr ""
 
 #: ../qml/ConfirmDialog.qml:25
-msgid ""
-"Are you sure you want to clear the memory? You will lose all saved matrices."
+msgid "Warning"
 msgstr ""
 
-#: ../qml/ConfirmDialog.qml:29
+#: ../qml/ConfirmDialog.qml:26
+msgid ""
+"Are you sure you want to clear all saved matrices? This cannot be undone."
+msgstr ""
+
+#: ../qml/ConfirmDialog.qml:30
 msgid "Yes, delete them"
 msgstr ""
