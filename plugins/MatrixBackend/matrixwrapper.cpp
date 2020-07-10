@@ -69,4 +69,5 @@ QHash<int, QByteArray> MatrixWrapper::roleNames() const {
 void MatrixWrapper::emitReset() {
 	beginResetModel();
 	endResetModel();
+	emit matrixChanged();
 }

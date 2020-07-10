@@ -23,12 +23,14 @@
 class MatrixWrapper : public QAbstractListModel {
 	Q_OBJECT
 
-	Q_PROPERTY(int rows READ rows);
-	Q_PROPERTY(int cols READ cols);
+	Q_PROPERTY(int rows READ rows NOTIFY matrixChanged);
+	Q_PROPERTY(int cols READ cols NOTIFY matrixChanged);
 	int rows() const;
 	int cols() const;
 
 	Matrix* matrix;
+signals:
+	void matrixChanged();
 public:
 	MatrixWrapper();
 	MatrixWrapper(Matrix* mat);

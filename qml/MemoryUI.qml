@@ -39,7 +39,10 @@ Page {
 		}
 		model: MatrixMemory
 		delegate: ListItem {
+			height: matrixVisualizer.height
+
 			MatrixVisualizer {
+				id: matrixVisualizer
 				labelText: matrixName
 				matrix: matrixValue
 			}

@@ -18,24 +18,38 @@ import Ubuntu.Components 1.3
 
 import MatrixBackend 1.0
 
-Column {
+ListItem {
 	id: matrixVisualizer
+	height: matrixLabel.height * (1 + matrix.rows) + margin * matrix.rows
 
 	property Matrix matrix
 	property var labelText
 
 	Label {
+		id: matrixLabel
 		text: labelText
 	}
 
-	Row {
-		spacing: margin
+	Repeater {
+		id: grid
+		model: matrix
+		anchors.top: matrixLabel.bottom
+		anchors.left: parent.left
 
-		Repeater {
-			model: matrix
+		Text {
+			text: entry
 
-			Text {
-				text: entry
+			property int row: Math.floor(index / matrix.rows)
+			property int col: index % matrix.rows
+
+			anchors {
+				top: row > 0 ? grid.itemAt(index - matrix.cols).bottom : parent.top
+				left: col > 0 ? grid.itemAt(index - 1).right : parent.left
+
+				topMargin: margin
+				leftMargin: margin
+				rightMargin: margin
+				bottomMargin: margin
 			}
 		}
 	}
