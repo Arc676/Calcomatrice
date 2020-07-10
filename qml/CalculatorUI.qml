@@ -25,10 +25,10 @@ Page {
 	header: DefaultHeader {}
 
 	Component.onCompleted: {
-		MatrixBackend.memory.initMemory()
+		MatrixMemory.initMemory()
 	}
 
 	Component.onDestruction: {
-		MatrixBackend.memory.clearMemory()
+		MatrixMemory.clearMemory()
 	}
 }

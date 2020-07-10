@@ -23,4 +23,54 @@ Page {
 	anchors.fill: parent
 
 	header: DefaultHeader {}
+
+	UbuntuListView {
+		id: memoryList
+		clip: true
+		anchors {
+			top: memoryUI.header.bottom
+			topMargin: margin
+			left: parent.left
+			leftMargin: margin
+			right: parent.right
+			rightMargin: margin
+			bottom: parent.bottom
+			bottomMargin: margin
+		}
+		model: MatrixMemory
+		delegate: ListItem {
+			height: matrixVisualizer.height
+
+			MatrixVisualizer {
+				id: matrixVisualizer
+				labelText: matrixName
+				matrix: matrixValue
+			}
+
+			leadingActions: ListItemActions {
+				actions: [
+					Action {
+						iconName: "delete"
+
+						onTriggered: MatrixMemory.eraseMatrixWithName(matrixName)
+					}
+				]
+			}
+
+			trailingActions: ListItemActions {
+				actions: [
+					Action {
+						iconName: "tag"
+
+						onTriggered: {} // rename matrix
+					},
+					Action {
+						iconName: "edit"
+
+						onTriggered: {} // edit matrix
+					}
+				]
+			}
+		}
+	}
 }
