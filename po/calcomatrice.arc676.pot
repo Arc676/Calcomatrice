@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 12:15+0000\n"
+"POT-Creation-Date: 2020-07-10 14:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,26 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/MatrixCreator.qml:44
+msgid "Rows"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:56
+msgid "Columns"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:65
+msgid "Create matrix"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:83
+msgid "Zero matrix"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:89
+msgid "Identity matrix (square matrices only)"
+msgstr ""
 
 #: ../qml/About.qml:40
 msgid "written by Arc676/Alessandro Vinciguerra. Project available under"

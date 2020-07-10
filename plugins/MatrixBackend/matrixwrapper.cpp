@@ -48,8 +48,8 @@ int MatrixWrapper::cols() const {
 
 QVariant MatrixWrapper::data(const QModelIndex &index, int role) const {
 	int idx1D = index.row();
-	int row = idx1D / rows();
-	int col = idx1D % rows();
+	int row = idx1D / cols();
+	int col = idx1D % cols();
 	return at(row, col);
 }
 
@@ -70,4 +70,29 @@ void MatrixWrapper::emitReset() {
 	beginResetModel();
 	endResetModel();
 	emit matrixChanged();
+}
+
+void MatrixWrapper::destroyMatrix() {
+	matrix_destroyMatrix(matrix);
+	emitReset();
+}
+
+void MatrixWrapper::createMatrix(int rows, int cols) {
+	if (matrix) matrix_destroyMatrix(matrix);
+	matrix = matrix_createZeroMatrix(rows, cols);
+	emitReset();
+}
+
+void MatrixWrapper::makeZeroMatrix() {
+	if (matrix) {
+		matrix_zeroMatrix(matrix);
+		emitReset();
+	}
+}
+
+void MatrixWrapper::makeIdentityMatrix() {
+	if (matrix) {
+		matrix_makeIdentity(matrix);
+		emitReset();
+	}
 }

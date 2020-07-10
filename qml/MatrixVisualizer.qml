@@ -20,10 +20,12 @@ import MatrixBackend 1.0
 
 ListItem {
 	id: matrixVisualizer
-	height: matrixLabel.height * (1 + matrix.rows) + margin * matrix.rows
+	height: matrixLabel.height + (grid.count > 0 ? (grid.itemAt(0).height + margin) * matrix.rows : margin)
 
 	property Matrix matrix
 	property var labelText
+	property bool editEnabled: false
+	property real fontSize: 12
 
 	Label {
 		id: matrixLabel
@@ -38,9 +40,10 @@ ListItem {
 
 		Text {
 			text: entry
+			font.pointSize: matrixVisualizer.fontSize
 
-			property int row: Math.floor(index / matrix.rows)
-			property int col: index % matrix.rows
+			property int row: Math.floor(index / matrix.cols)
+			property int col: index % matrix.cols
 
 			anchors {
 				top: row > 0 ? grid.itemAt(index - matrix.cols).bottom : parent.top
@@ -50,6 +53,14 @@ ListItem {
 				leftMargin: margin
 				rightMargin: margin
 				bottomMargin: margin
+			}
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: {
+					if (matrixVisualizer.editEnabled) {
+					}
+				}
 			}
 		}
 	}

@@ -23,4 +23,71 @@ Page {
 	anchors.fill: parent
 
 	header: DefaultHeader {}
+
+	Column {
+		spacing: margin
+		anchors {
+			top: header.bottom
+			topMargin: margin
+			left: parent.left
+			leftMargin: margin
+			right: parent.right
+			rightMargin: margin
+			bottom: parent.bottom
+			bottomMargin: margin
+		}
+
+		Row {
+			spacing: margin
+
+			Label {
+				text: i18n.tr("Rows")
+			}
+
+			TextField {
+				id: rowField
+			}
+		}
+
+		Row {
+			spacing: margin
+
+			Label {
+				text: i18n.tr("Columns")
+			}
+
+			TextField {
+				id: colField
+			}
+		}
+
+		Button {
+			text: i18n.tr("Create matrix")
+			onClicked: {
+				var rows = parseInt(rowField.text)
+				var cols = parseInt(colField.text)
+				visualizer.matrix.createMatrix(rows, cols)
+			}
+		}
+
+		MatrixVisualizer {
+			id: visualizer
+			labelText: "New matrix"
+			matrix: Matrix {}
+			editEnabled: true
+			fontSize: 20
+		}
+
+		Button {
+			width: parent.width
+			text: i18n.tr("Zero matrix")
+			onClicked: visualizer.matrix.makeZeroMatrix()
+		}
+
+		Button {
+			width: parent.width
+			text: i18n.tr("Identity matrix (square matrices only)")
+			onClicked: visualizer.matrix.makeIdentityMatrix()
+		}
+	}
 }

@@ -44,6 +44,12 @@ public:
 	QHash<int, QByteArray> roleNames() const;
 
 	Q_INVOKABLE void emitReset();
+
+	Q_INVOKABLE void destroyMatrix();
+	Q_INVOKABLE void createMatrix(int rows, int cols);
+
+	Q_INVOKABLE void makeZeroMatrix();
+	Q_INVOKABLE void makeIdentityMatrix();
 };
 Q_DECLARE_METATYPE(MatrixWrapper*)
 
