@@ -21,6 +21,12 @@ MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {
 	emitReset();
 }
 
+void MatrixWrapper::loadMatrix(MatrixWrapper* mat) {
+	if (matrix) matrix_destroyMatrix(matrix);
+	matrix = matrix_copyMatrix(mat->getMatrix());
+	emitReset();
+}
+
 const Matrix* MatrixWrapper::getMatrix() const {
 	return matrix;
 }

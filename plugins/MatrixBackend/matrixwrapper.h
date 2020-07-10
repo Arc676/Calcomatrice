@@ -34,6 +34,7 @@ signals:
 public:
 	MatrixWrapper();
 	MatrixWrapper(Matrix* mat);
+	Q_INVOKABLE void loadMatrix(MatrixWrapper* mat);
 
 	const Matrix* getMatrix() const;
 

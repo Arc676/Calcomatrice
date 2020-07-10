@@ -15,6 +15,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
 import MatrixBackend 1.0
 
@@ -23,6 +24,11 @@ Page {
 	anchors.fill: parent
 
 	header: DefaultHeader {}
+
+	Component {
+		id: compRenameDialog
+		RenameDialog {}
+	}
 
 	UbuntuListView {
 		id: memoryList
@@ -62,12 +68,17 @@ Page {
 					Action {
 						iconName: "tag"
 
-						onTriggered: {} // rename matrix
+						onTriggered: {
+							PopupUtils.open(compRenameDialog, memoryUI, {"oldName" : matrixName})
+						}
 					},
 					Action {
 						iconName: "edit"
 
-						onTriggered: {} // edit matrix
+						onTriggered: {
+							pageViewer.matrixCreatorPage.loadMatrix(matrixValue)
+							pageViewer.push(pageViewer.matrixCreatorPage)
+						}
 					}
 				]
 			}

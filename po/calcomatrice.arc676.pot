@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 14:53+0000\n"
+"POT-Creation-Date: 2020-07-10 16:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,32 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/MatrixCreator.qml:44
+#: ../qml/MatrixCreator.qml:48
 msgid "Rows"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:56
+#: ../qml/MatrixCreator.qml:60
 msgid "Columns"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:65
+#: ../qml/MatrixCreator.qml:69
 msgid "Create matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:83
+#: ../qml/MatrixCreator.qml:87
 msgid "Zero matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:89
+#: ../qml/MatrixCreator.qml:93
 msgid "Identity matrix (square matrices only)"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:101
+msgid "Matrix name"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:109
+msgid "Save"
 msgstr ""
 
 #: ../qml/About.qml:40
@@ -96,6 +104,18 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: ../qml/RenameDialog.qml:27
+msgid "Enter new matrix name"
+msgstr ""
+
+#: ../qml/RenameDialog.qml:35
+msgid "Rename matrix"
+msgstr ""
+
+#: ../qml/RenameDialog.qml:44 ../qml/ConfirmDialog.qml:39
+msgid "Cancel"
+msgstr ""
+
 #: ../qml/ConfirmDialog.qml:25
 msgid ""
 "Are you sure you want to clear the memory? You will lose all saved matrices."
@@ -103,8 +123,4 @@ msgstr ""
 
 #: ../qml/ConfirmDialog.qml:29
 msgid "Yes, delete them"
-msgstr ""
-
-#: ../qml/ConfirmDialog.qml:39
-msgid "Cancel"
 msgstr ""

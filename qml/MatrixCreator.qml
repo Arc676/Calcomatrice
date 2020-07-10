@@ -24,6 +24,10 @@ Page {
 
 	header: DefaultHeader {}
 
+	function loadMatrix(matrix) {
+		visualizer.matrix.loadMatrix(matrix)
+	}
+
 	Column {
 		spacing: margin
 		anchors {
@@ -88,6 +92,28 @@ Page {
 			width: parent.width
 			text: i18n.tr("Identity matrix (square matrices only)")
 			onClicked: visualizer.matrix.makeIdentityMatrix()
+		}
+
+		Row {
+			spacing: margin
+
+			Label {
+				text: i18n.tr("Matrix name")
+			}
+
+			TextField {
+				id: matrixName
+			}
+
+			Button {
+				text: i18n.tr("Save")
+				onClicked: {
+					var matName = matrixName.text
+					if (matName.length > 0) {
+						MatrixMemory.saveMatrixWithName(matName, visualizer.matrix)
+					}
+				}
+			}
 		}
 	}
 }
