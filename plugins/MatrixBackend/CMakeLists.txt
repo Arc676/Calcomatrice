@@ -7,6 +7,7 @@ set(
     matrixbackend.cpp
     matrixwrapper.cpp
     memory.cpp
+    calchistory.cpp
 )
 
 set(CMAKE_AUTOMOC ON)

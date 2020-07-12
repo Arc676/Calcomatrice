@@ -18,10 +18,12 @@
 
 #include "plugin.h"
 #include "matrixbackend.h"
+#include "calchistory.h"
 
 void MatrixBackendPlugin::registerTypes(const char *uri) {
 	//@uri MatrixBackend
 	qmlRegisterSingletonType<MatrixBackend>(uri, 1, 0, "MatrixBackend", &MatrixBackend::qmlInstance);
 	qmlRegisterSingletonType<Memory>(uri, 1, 0, "MatrixMemory", &Memory::qmlInstance);
 	qmlRegisterType<MatrixWrapper>(uri, 1, 0, "Matrix");
+	qmlRegisterType<CalcHistory>(uri, 1, 0, "CalculationHistory");
 }

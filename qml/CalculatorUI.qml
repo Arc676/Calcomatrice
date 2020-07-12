@@ -15,6 +15,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
 import MatrixBackend 1.0
 
@@ -23,6 +24,88 @@ Page {
 	anchors.fill: parent
 
 	header: DefaultHeader {}
+
+	property CalculationHistory calcHist: CalculationHistory {}
+
+	Component {
+		id: saveDialog
+		SaveDialog {}
+	}
+
+	UbuntuListView {
+		id: calcHistory
+		clip: true
+		anchors {
+			top: calculatorUI.header.bottom
+			topMargin: margin
+			left: parent.left
+			leftMargin: margin
+			right: parent.right
+			rightMargin: margin
+			bottom: inputField.top
+			bottomMargin: margin
+		}
+		model: calcHist
+		delegate: ListItem {
+			height: visualizer.height
+
+			MatrixVisualizer {
+				id: visualizer
+				matrix: calcResult
+				labelText: calcExpr
+			}
+
+			leadingActions: ListItemActions {
+				actions: [
+					Action {
+						iconName: "delete"
+
+						onTriggered: calcHist.delCalculation(index)
+					}
+				]
+			}
+
+			trailingActions: ListItemActions {
+				actions: [
+					Action {
+						iconName: "save"
+
+						onTriggered: PopupUtils.open(saveDialog, calculatorUI, {"matrix": calcResult})
+					}
+				]
+			}
+		}
+	}
+
+	TextField {
+		id: inputField
+		anchors {
+			left: parent.left
+			leftMargin: margin
+			right: parent.right
+			rightMargin: margin
+			bottom: calcButton.top
+			bottomMargin: margin
+		}
+	}
+
+	Button {
+		id: calcButton
+		anchors {
+			left: parent.left
+			leftMargin: margin
+			right: parent.right
+			rightMargin: margin
+			bottom: parent.bottom
+			bottomMargin: margin
+		}
+		text: "Calculate"
+		onClicked: {
+			var expr = inputField.text
+			var res = MatrixBackend.evaluateExpression(expr)
+			calcHist.addCalculation(expr, res)
+		}
+	}
 
 	Component.onCompleted: {
 		MatrixMemory.initMemory()
