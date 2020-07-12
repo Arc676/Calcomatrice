@@ -20,17 +20,20 @@ Dialog {
 	id: dialog
 	objectName: "confirmDialog"
 
-	signal clearMemory()
+	signal confirm()
+
+	property var warningText
+	property var confirmText
 
 	title: i18n.tr("Warning")
-	text: i18n.tr("Are you sure you want to clear all saved matrices? This cannot be undone.")
+	text: warningText
 
 	Button {
 		id: confirm
-		text: i18n.tr("Yes, delete them")
+		text: confirmText
 		color: theme.palette.normal.negative
 		onClicked: {
-			dialog.clearMemory()
+			dialog.confirm()
 			PopupUtils.close(dialog)
 		}
 	}

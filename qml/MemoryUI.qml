@@ -40,7 +40,7 @@ Page {
 			leftMargin: margin
 			right: parent.right
 			rightMargin: margin
-			bottom: parent.bottom
+			bottom: clearMemBtn.top
 			bottomMargin: margin
 		}
 		model: MatrixMemory
@@ -82,6 +82,30 @@ Page {
 					}
 				]
 			}
+		}
+	}
+
+	Button {
+		id: clearMemBtn
+		anchors {
+			left: parent.left
+			leftMargin: margin
+			right: parent.right
+			rightMargin: margin
+			bottom: parent.bottom
+			bottomMargin: margin
+		}
+		text: i18n.tr("Clear Memory")
+		onClicked: PopupUtils.open(confirmClearDialog)
+	}
+
+	Component {
+		id: confirmClearDialog
+
+		ConfirmDialog {
+			warningText: i18n.tr("Are you sure you want to clear all saved matrices? This cannot be undone.")
+			confirmText: i18n.tr("Yes, delete them")
+			onConfirm: MatrixMemory.clearMemory()
 		}
 	}
 }
