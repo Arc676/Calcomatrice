@@ -27,9 +27,22 @@ Page {
 
 	property CalculationHistory calcHist: CalculationHistory {}
 
+	function clearHistory() {
+		PopupUtils.open(confirmDialog)
+	}
+
 	Component {
 		id: saveDialog
 		SaveDialog {}
+	}
+
+	Component {
+		id: confirmDialog
+		ConfirmDialog {
+			warningText: i18n.tr("Are you sure you want to clear your calculation history? This cannot be undone.")
+			confirmText: i18n.tr("Yes, clear it")
+			onConfirm: calcHist.clearAll();
+		}
 	}
 
 	UbuntuListView {
@@ -113,5 +126,6 @@ Page {
 
 	Component.onDestruction: {
 		MatrixMemory.clearMemory()
+		calcHist.clearAll()
 	}
 }

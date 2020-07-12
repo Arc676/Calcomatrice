@@ -56,3 +56,12 @@ void CalcHistory::delCalculation(int index) {
 	results.removeAt(index);
 	emitReset();
 }
+
+void CalcHistory::clearAll() {
+	calculations.clear();
+	for (QList<MatrixWrapper*>::iterator it = results.begin(); it != results.end();) {
+		(*it)->destroyMatrix();
+		it = results.erase(it);
+	}
+	emitReset();
+}

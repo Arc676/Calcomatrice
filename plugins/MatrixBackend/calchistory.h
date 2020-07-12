@@ -40,6 +40,7 @@ public:
 
 	Q_INVOKABLE void addCalculation(QString expr, MatrixWrapper* res);
 	Q_INVOKABLE void delCalculation(int index);
+	Q_INVOKABLE void clearAll();
 
 	Q_INVOKABLE void emitReset();
 };
