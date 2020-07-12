@@ -47,10 +47,16 @@ public:
 		return Memory::instance;
 	}
 
+	static Memory* getInstance() {
+		return Memory::instance;
+	}
+
 	int columnCount(const QModelIndex &parent) const;
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 	QHash<int, QByteArray> roleNames() const;
+
+	QString replaceHumanReadableNames(QString expr) const;
 
 	Q_INVOKABLE bool matrixExists(QString name) const;
 	Q_INVOKABLE void saveMatrixWithName(QString name, MatrixWrapper* matrix);

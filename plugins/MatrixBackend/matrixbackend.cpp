@@ -13,11 +13,18 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 // See README and LICENSE for more details
 
-#include <QDebug>
 #include "matrixbackend.h"
 
 MatrixBackend* MatrixBackend::instance = nullptr;
 bool MatrixBackend::evalFailed = false;
+
+MatrixWrapper* MatrixBackend::evaluateExpression(QString expr) const {
+	expr = Memory::getInstance()->replaceHumanReadableNames(expr);
+	QByteArray arr = expr.toUtf8();
+	char* cexpr = arr.data();
+	Matrix* result = MatrixBackend::eval(cexpr, NULL);
+	return new MatrixWrapper(result);
+}
 
 Matrix* MatrixBackend::eval(char* expr, char** progress) {
 	evalFailed = false;
@@ -143,7 +150,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 			break;
 		}
 		default:
-			Matrix* stored = ((Memory*)Memory::qmlInstance)->getMatrixWithName(token);
+			Matrix* stored = Memory::getInstance()->getMatrixWithName(token);
 			if (!stored) {
 				evalFailed = true;
 				return nullptr;

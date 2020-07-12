@@ -63,7 +63,7 @@ bool Memory::matrixExists(QString name) const {
 
 Matrix* Memory::getMatrixWithName(char* name) const {
 	QString qname(name);
-	if (matrixExists(qname)) {
+	if (storedMatrices.find(qname) != storedMatrices.end()) {
 			return storedMatrices[qname];
 	}
 	return nullptr;
@@ -94,6 +94,13 @@ void Memory::renameMatrix(QString oldName, QString newName) {
 	matrixNames[newName] = matrixNames[oldName];
 	matrixNames.remove(oldName);
 	reloadTable();
+}
+
+QString Memory::replaceHumanReadableNames(QString expr) const {
+	for (QMap<QString, QString>::const_iterator it = matrixNames.cbegin(); it != matrixNames.cend(); it++) {
+		expr.replace(it.key(), it.value());
+	}
+	return expr;
 }
 
 void Memory::reloadTable() {

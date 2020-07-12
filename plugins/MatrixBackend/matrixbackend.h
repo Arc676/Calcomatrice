@@ -35,8 +35,9 @@ class MatrixBackend: public QObject {
 
 	static MatrixBackend* instance;
 	static bool evalFailed;
-public:
 	static Matrix* eval(char* expr, char** progress);
+public:
+	Q_INVOKABLE MatrixWrapper* evaluateExpression(QString expr) const;
 
 	static QObject* qmlInstance(QQmlEngine* engine, QJSEngine* jsEngine) {
 		if (!MatrixBackend::instance) {
