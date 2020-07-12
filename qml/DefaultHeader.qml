@@ -14,7 +14,6 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
 
 import MatrixBackend 1.0
 
@@ -24,6 +23,20 @@ PageHeader {
 
 	trailingActionBar {
 		actions: [
+			Action {
+				iconName: "info"
+				visible: pageViewer.depth === 1
+				text: i18n.tr("About Calcomatrice")
+
+				onTriggered: pageViewer.push(Qt.resolvedUrl("About.qml"))
+			},
+			Action {
+				iconName: "help"
+				visible: pageViewer.depth === 1
+				text: i18n.tr("Help")
+
+				onTriggered: pageViewer.push(Qt.resolvedUrl("Help.qml"))
+			},
 			Action {
 				iconName: "add"
 				visible: pageViewer.currentPage !== pageViewer.matrixCreatorPage
@@ -39,36 +52,12 @@ PageHeader {
 				onTriggered: pageViewer.push(pageViewer.memoryPage)
 			},
 			Action {
-				iconName: "reset"
-				visible: true
-				text: i18n.tr("Clear Memory")
-
-				onTriggered: PopupUtils.open(confirmClearDialog, pageViewer.currentItem, {})
-			},
-			Action {
-				iconName: "info"
+				iconName: "delete"
 				visible: pageViewer.depth === 1
-				text: i18n.tr("About Calcomatrice")
+				text: i18n.tr("Clear Calculation History")
 
-				onTriggered: pageViewer.push(Qt.resolvedUrl("About.qml"))
-			},
-			Action {
-				iconName: "help"
-				visible: pageViewer.depth === 1
-				text: i18n.tr("Help")
-
-				onTriggered: pageViewer.push(Qt.resolvedUrl("Help.qml"))
+				onTriggered: calculatorUI.clearHistory()
 			}
 		]
-	}
-
-	Component {
-		id: confirmClearDialog
-
-		ConfirmDialog {
-			onClearMemory: {
-				MatrixMemory.clearMemory()
-			}
-		}
 	}
 }

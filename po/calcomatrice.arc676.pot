@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 13:07+0000\n"
+"POT-Creation-Date: 2020-07-12 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid "Save matrix"
 msgstr ""
 
 #: ../qml/SaveDialog.qml:45 ../qml/RenameDialog.qml:45
-#: ../qml/ConfirmDialog.qml:40
+#: ../qml/ConfirmDialog.qml:43
 msgid "Cancel"
 msgstr ""
 
@@ -97,6 +97,16 @@ msgid ""
 "Application icon by <a href='https://twitter.com/theberzi'>@theberzi</a>"
 msgstr ""
 
+#: ../qml/CalculatorUI.qml:42
+msgid ""
+"Are you sure you want to clear your calculation history? This cannot be "
+"undone."
+msgstr ""
+
+#: ../qml/CalculatorUI.qml:43
+msgid "Yes, clear it"
+msgstr ""
+
 #: ../qml/NameErrorDialog.qml:23
 msgid "Error"
 msgstr ""
@@ -109,28 +119,41 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:23 calcomatrice.desktop.in.h:1
+#: ../qml/DefaultHeader.qml:22 calcomatrice.desktop.in.h:1
 msgid "Calcomatrice"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:30
-msgid "New Matrix"
-msgstr ""
-
-#: ../qml/DefaultHeader.qml:37
-msgid "View Stored Matrices"
-msgstr ""
-
-#: ../qml/DefaultHeader.qml:44
-msgid "Clear Memory"
-msgstr ""
-
-#: ../qml/DefaultHeader.qml:51
+#: ../qml/DefaultHeader.qml:29
 msgid "About Calcomatrice"
 msgstr ""
 
-#: ../qml/DefaultHeader.qml:58
+#: ../qml/DefaultHeader.qml:36
 msgid "Help"
+msgstr ""
+
+#: ../qml/DefaultHeader.qml:43
+msgid "New Matrix"
+msgstr ""
+
+#: ../qml/DefaultHeader.qml:50
+msgid "View Stored Matrices"
+msgstr ""
+
+#: ../qml/DefaultHeader.qml:57
+msgid "Clear Calculation History"
+msgstr ""
+
+#: ../qml/MemoryUI.qml:98
+msgid "Clear Memory"
+msgstr ""
+
+#: ../qml/MemoryUI.qml:106
+msgid ""
+"Are you sure you want to clear all saved matrices? This cannot be undone."
+msgstr ""
+
+#: ../qml/MemoryUI.qml:107
+msgid "Yes, delete them"
 msgstr ""
 
 #: ../qml/RenameDialog.qml:27
@@ -145,15 +168,6 @@ msgstr ""
 msgid "Rename matrix"
 msgstr ""
 
-#: ../qml/ConfirmDialog.qml:25
+#: ../qml/ConfirmDialog.qml:28
 msgid "Warning"
-msgstr ""
-
-#: ../qml/ConfirmDialog.qml:26
-msgid ""
-"Are you sure you want to clear all saved matrices? This cannot be undone."
-msgstr ""
-
-#: ../qml/ConfirmDialog.qml:30
-msgid "Yes, delete them"
 msgstr ""
