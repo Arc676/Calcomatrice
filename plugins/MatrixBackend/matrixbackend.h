@@ -26,9 +26,10 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "memory.h"
+#define THREADSAFE
+#include "exprfix.h"
 
-#define PARSE_TOKEN(expr, ptr) strtok_r(expr, " ", ptr)
+#include "memory.h"
 
 class MatrixBackend: public QObject {
 	Q_OBJECT

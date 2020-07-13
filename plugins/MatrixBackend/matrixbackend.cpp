@@ -18,11 +18,49 @@
 MatrixBackend* MatrixBackend::instance = nullptr;
 bool MatrixBackend::evalFailed = false;
 
+int isBinaryOperator(char* str) {
+	char c = str[0];
+	return c == '+' || c == '-' || c == '*' || c == '.' || c == '^';
+}
+
+int isUnaryOperator(char* str) {
+	char c = str[0];
+	return c == 'i' || c == 'd' || c == 'm' || c == 'c' || c == 't';
+}
+
+void operatorProperties(char* str, int* prec, int* left) {
+        switch (str[0]) {
+                case '+':
+                        *prec = 10;
+                        *left = 1;
+                        return;
+                case '-':
+                        *prec = 10;
+                        *left = 1;
+                        return;
+                case '*':
+                        *prec = 20;
+                        *left = 1;
+                        return;
+                case '^':
+                        *prec = 30;
+                        *left = 0;
+                        return;
+                case '.':
+                        *prec = 20;
+                        *left = 1;
+                        return;
+        }
+        *prec = 0;
+        *left = 0;
+}
+
 MatrixWrapper* MatrixBackend::evaluateExpression(QString expr) const {
 	expr = Memory::getInstance()->replaceHumanReadableNames(expr);
 	QByteArray arr = expr.toUtf8();
 	char* cexpr = arr.data();
-	Matrix* result = MatrixBackend::eval(cexpr, NULL);
+	char* prefix = infixToPrefix(cexpr, isBinaryOperator, isUnaryOperator, operatorProperties);
+	Matrix* result = MatrixBackend::eval(prefix, NULL);
 	return new MatrixWrapper(result);
 }
 
