@@ -12,6 +12,6 @@ Both dependencies are included as submodules in this repository. Note that the s
 
 # Licensing
 
-Project and backend library available under GPLv3. See `LICENSE` for full license text.
+Project and backend library available under GPLv3. See `LICENSE` for full license text. Application design and components inspired by the Ubuntu Touch [Calculator app](https://gitlab.com/ubports/apps/calculator-app/), also available under GPLv3.
 
 Thanks to [@theberzi](https://twitter.com/theberzi) for the app icon (released into the public domain) and the app name.

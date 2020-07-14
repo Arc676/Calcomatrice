@@ -115,9 +115,24 @@ Page {
 		text: "Calculate"
 		onClicked: {
 			var expr = inputField.text
-			var res = MatrixBackend.evaluateExpression(expr)
-			calcHist.addCalculation(expr, res)
+			if (expr.length > 0) {
+				var res = MatrixBackend.evaluateExpression(expr)
+				calcHist.addCalculation(expr, res)
+				inputField.text = ""
+			}
 		}
+	}
+
+	// For debugging on desktop
+	Keys.onReleased: if (event.key == Qt.Key_Up) bottomEdge.commit()
+
+	BottomEdge {
+		id: bottomEdge
+		width: parent.width
+		height: parent.height / 2
+		contentUrl: Qt.resolvedUrl("BottomPane.qml")
+		hint.text: i18n.tr("Memory/Functions")
+		hint.visible: enabled
 	}
 
 	Component.onCompleted: {

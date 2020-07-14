@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 13:30+0000\n"
+"POT-Creation-Date: 2020-07-14 08:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,34 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: ../qml/BottomPane.qml:46
+msgid "Saved Matrices"
+msgstr ""
+
+#: ../qml/BottomPane.qml:101
+msgid "Invert"
+msgstr ""
+
+#: ../qml/BottomPane.qml:106
+msgid "Determinant"
+msgstr ""
+
+#: ../qml/BottomPane.qml:111
+msgid "Minors"
+msgstr ""
+
+#: ../qml/BottomPane.qml:116
+msgid "Cofactors"
+msgstr ""
+
+#: ../qml/BottomPane.qml:121
+msgid "Transpose"
+msgstr ""
+
+#: ../qml/BottomPane.qml:126
+msgid "Identity"
+msgstr ""
+
 #: ../qml/About.qml:40
 msgid "written by Arc676/Alessandro Vinciguerra. Project available under"
 msgstr ""
@@ -107,6 +135,10 @@ msgstr ""
 msgid "Yes, clear it"
 msgstr ""
 
+#: ../qml/CalculatorUI.qml:134
+msgid "Memory/Functions"
+msgstr ""
+
 #: ../qml/NameErrorDialog.qml:23
 msgid "Error"
 msgstr ""
@@ -124,11 +156,11 @@ msgid "Calcomatrice"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:29
-msgid "About Calcomatrice"
+msgid "View Stored Matrices"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:36
-msgid "Help"
+msgid "Clear Calculation History"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:43
@@ -136,11 +168,11 @@ msgid "New Matrix"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:50
-msgid "View Stored Matrices"
+msgid "About Calcomatrice"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:57
-msgid "Clear Calculation History"
+msgid "Help"
 msgstr ""
 
 #: ../qml/MemoryUI.qml:98
