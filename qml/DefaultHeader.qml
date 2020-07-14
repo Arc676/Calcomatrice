@@ -24,27 +24,6 @@ PageHeader {
 	trailingActionBar {
 		actions: [
 			Action {
-				iconName: "info"
-				visible: pageViewer.depth === 1
-				text: i18n.tr("About Calcomatrice")
-
-				onTriggered: pageViewer.push(Qt.resolvedUrl("About.qml"))
-			},
-			Action {
-				iconName: "help"
-				visible: pageViewer.depth === 1
-				text: i18n.tr("Help")
-
-				onTriggered: pageViewer.push(Qt.resolvedUrl("Help.qml"))
-			},
-			Action {
-				iconName: "add"
-				visible: pageViewer.currentPage !== pageViewer.matrixCreatorPage
-				text: i18n.tr("New Matrix")
-
-				onTriggered: pageViewer.push(pageViewer.matrixCreatorPage)
-			},
-			Action {
 				iconName: "view-list-symbolic"
 				visible: pageViewer.depth === 1
 				text: i18n.tr("View Stored Matrices")
@@ -57,6 +36,27 @@ PageHeader {
 				text: i18n.tr("Clear Calculation History")
 
 				onTriggered: calculatorUI.clearHistory()
+			},
+			Action {
+				iconName: "add"
+				visible: pageViewer.currentPage === pageViewer.memoryPage || pageViewer.currentPage === pageViewer.mainUI
+				text: i18n.tr("New Matrix")
+
+				onTriggered: pageViewer.push(pageViewer.matrixCreatorPage)
+			},
+			Action {
+				iconName: "info"
+				visible: pageViewer.depth === 1
+				text: i18n.tr("About Calcomatrice")
+
+				onTriggered: pageViewer.push(Qt.resolvedUrl("About.qml"))
+			},
+			Action {
+				iconName: "help"
+				visible: pageViewer.depth === 1
+				text: i18n.tr("Help")
+
+				onTriggered: pageViewer.push(Qt.resolvedUrl("Help.qml"))
 			}
 		]
 	}
