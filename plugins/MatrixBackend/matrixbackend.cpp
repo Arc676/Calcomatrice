@@ -57,6 +57,14 @@ void operatorProperties(char* str, int* prec, int* left) {
 
 MatrixWrapper* MatrixBackend::evaluateExpression(QString expr) const {
 	expr = Memory::getInstance()->replaceHumanReadableNames(expr);
+	expr.replace("invert", "i");
+	expr.replace("det", "d");
+	expr.replace("minors", "m");
+	expr.replace("cofactors", "c");
+	expr.replace("transpose", "t");
+	expr.replace("identity", "id");
+	expr.replace("(", " ( ");
+	expr.replace(")", " ) ");
 	QByteArray arr = expr.toUtf8();
 	char* cexpr = arr.data();
 	char* prefix = infixToPrefix(cexpr, isBinaryOperator, isUnaryOperator, operatorProperties);

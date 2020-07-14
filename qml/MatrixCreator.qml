@@ -124,4 +124,6 @@ Page {
 			}
 		}
 	}
+
+	Component.onDestruction: visualizer.matrix.destroyMatrix()
 }

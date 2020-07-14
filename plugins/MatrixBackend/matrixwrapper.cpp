@@ -79,8 +79,10 @@ void MatrixWrapper::emitReset() {
 }
 
 void MatrixWrapper::destroyMatrix() {
-	matrix_destroyMatrix(matrix);
-	emitReset();
+	if (matrix) {
+		matrix_destroyMatrix(matrix);
+		emitReset();
+	}
 }
 
 void MatrixWrapper::createMatrix(int rows, int cols) {
