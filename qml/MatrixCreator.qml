@@ -56,6 +56,7 @@ Page {
 
 			TextField {
 				id: rowField
+				inputMethodHints: Qt.ImhDigitsOnly
 			}
 		}
 
@@ -68,6 +69,7 @@ Page {
 
 			TextField {
 				id: colField
+				inputMethodHints: Qt.ImhDigitsOnly
 			}
 		}
 

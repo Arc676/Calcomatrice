@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-08 09:12+0000\n"
+"POT-Creation-Date: 2020-09-08 10:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Save matrix"
 msgstr ""
 
-#: ../qml/SaveDialog.qml:45 ../qml/InputDialog.qml:49
+#: ../qml/SaveDialog.qml:45 ../qml/InputDialog.qml:51
 #: ../qml/ConfirmDialog.qml:43
 msgid "Cancel"
 msgstr ""
@@ -38,27 +38,27 @@ msgstr ""
 msgid "Rows"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:66
+#: ../qml/MatrixCreator.qml:67
 msgid "Columns"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:75
+#: ../qml/MatrixCreator.qml:77
 msgid "Create matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:93
+#: ../qml/MatrixCreator.qml:95
 msgid "Zero matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:99
+#: ../qml/MatrixCreator.qml:101
 msgid "Identity matrix (square matrices only)"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:107
+#: ../qml/MatrixCreator.qml:109
 msgid "Matrix name"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:115
+#: ../qml/MatrixCreator.qml:117
 msgid "Save"
 msgstr ""
 
@@ -187,16 +187,16 @@ msgstr ""
 msgid "Rename matrix"
 msgstr ""
 
-#: ../qml/MemoryUI.qml:106
+#: ../qml/MemoryUI.qml:107
 msgid "Clear Memory"
 msgstr ""
 
-#: ../qml/MemoryUI.qml:114
+#: ../qml/MemoryUI.qml:115
 msgid ""
 "Are you sure you want to clear all saved matrices? This cannot be undone."
 msgstr ""
 
-#: ../qml/MemoryUI.qml:115
+#: ../qml/MemoryUI.qml:116
 msgid "Yes, delete them"
 msgstr ""
 

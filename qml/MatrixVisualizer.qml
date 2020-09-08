@@ -62,6 +62,7 @@ ListItem {
 					titleText: i18n.tr("Set Entry")
 					msgText: i18n.tr("Element at %1, %2").arg(row + 1).arg(col + 1)
 					confirmText: i18n.tr("Confirm")
+					inputType: Qt.ImhFormattedNumbersOnly
 
 					onConfirm: matrix.editEntry(parseFloat(input), row, col)
 				}

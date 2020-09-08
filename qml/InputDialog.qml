@@ -27,12 +27,14 @@ Dialog {
 	property var confirmText
 	property var titleText
 	property var msgText
+	property var inputType
 
 	title: titleText
 	text: msgText
 
 	TextField {
 		id: inputField
+		inputMethodHints: dialog.inputType
 	}
 
 	Button {
