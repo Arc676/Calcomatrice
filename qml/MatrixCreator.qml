@@ -117,7 +117,7 @@ Page {
 				text: i18n.tr("Save")
 				onClicked: {
 					var matName = matrixName.text.trim()
-					if (matName.length > 0 && !/^\d/.test(matName)) {
+					if (matName.length > 0 && /^[a-zA-Z]/.test(matName)) {
 						MatrixMemory.saveMatrixWithName(matName, visualizer.matrix)
 					} else {
 						PopupUtils.open(errorDialog)

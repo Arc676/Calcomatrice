@@ -21,7 +21,7 @@ Dialog {
 	objectName: "nameErrorDialog"
 
 	title: i18n.tr("Error")
-	text: i18n.tr("Matrix names cannot be empty or start with a digit.")
+	text: i18n.tr("Matrix names must start with a letter.")
 
 	Button {
 		id: okBtn
