@@ -39,12 +39,11 @@ public:
 	const Matrix* getMatrix() const;
 
 	Q_INVOKABLE float at(int row, int col) const;
+	Q_INVOKABLE void editEntry(float val, int row, int col);
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 	QHash<int, QByteArray> roleNames() const;
-
-	Q_INVOKABLE void emitReset();
 
 	Q_INVOKABLE void destroyMatrix();
 	Q_INVOKABLE void createMatrix(int rows, int cols);

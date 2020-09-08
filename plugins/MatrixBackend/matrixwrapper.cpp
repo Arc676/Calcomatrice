@@ -18,13 +18,17 @@
 MatrixWrapper::MatrixWrapper() : matrix(nullptr) {}
 
 MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {
-	emitReset();
+	beginResetModel();
+	endResetModel();
+	emit matrixChanged();
 }
 
 void MatrixWrapper::loadMatrix(MatrixWrapper* mat) {
+	beginResetModel();
 	if (matrix) matrix_destroyMatrix(matrix);
 	matrix = matrix_copyMatrix(mat->getMatrix());
-	emitReset();
+	endResetModel();
+	emit matrixChanged();
 }
 
 const Matrix* MatrixWrapper::getMatrix() const {
@@ -66,41 +70,52 @@ float MatrixWrapper::at(int row, int col) const {
 	return 0;
 }
 
+void MatrixWrapper::editEntry(float val, int row, int col) {
+	if (matrix) {
+		beginResetModel();
+		matrix->matrix[row][col] = val;
+		endResetModel();
+		emit matrixChanged();
+	}
+}
+
 QHash<int, QByteArray> MatrixWrapper::roleNames() const {
 	QHash<int, QByteArray> names;
 	names[Qt::UserRole] = "entry";
 	return names;
 }
 
-void MatrixWrapper::emitReset() {
-	beginResetModel();
-	endResetModel();
-	emit matrixChanged();
-}
-
 void MatrixWrapper::destroyMatrix() {
 	if (matrix) {
+		beginResetModel();
 		matrix_destroyMatrix(matrix);
-		emitReset();
+		endResetModel();
+		emit matrixChanged();
 	}
 }
 
 void MatrixWrapper::createMatrix(int rows, int cols) {
+	beginResetModel();
 	if (matrix) matrix_destroyMatrix(matrix);
 	matrix = matrix_createZeroMatrix(rows, cols);
-	emitReset();
+	endResetModel();
+	emit matrixChanged();
 }
 
 void MatrixWrapper::makeZeroMatrix() {
 	if (matrix) {
+		beginResetModel();
 		matrix_zeroMatrix(matrix);
-		emitReset();
+		endResetModel();
+		emit matrixChanged();
 	}
 }
 
 void MatrixWrapper::makeIdentityMatrix() {
 	if (matrix) {
+		beginResetModel();
 		matrix_makeIdentity(matrix);
-		emitReset();
+		endResetModel();
+		emit matrixChanged();
 	}
 }

@@ -15,6 +15,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
 import MatrixBackend 1.0
 
@@ -55,15 +56,25 @@ ListItem {
 				bottomMargin: margin
 			}
 
+			Component {
+				id: inputDialog
+				InputDialog {
+					titleText: i18n.tr("Set Entry")
+					msgText: i18n.tr("Element at %1, %2").arg(row + 1).arg(col + 1)
+					confirmText: i18n.tr("Confirm")
+
+					onConfirm: matrix.editEntry(parseFloat(input), row, col)
+				}
+			}
+
 			MouseArea {
 				anchors.fill: parent
 				onClicked: {
 					if (matrixVisualizer.editEnabled) {
+						PopupUtils.open(inputDialog)
 					}
 				}
 			}
 		}
 	}
-
-	Component.onCompleted: matrix.emitReset()
 }

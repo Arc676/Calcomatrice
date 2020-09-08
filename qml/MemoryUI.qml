@@ -27,7 +27,15 @@ Page {
 
 	Component {
 		id: renameDialog
-		RenameDialog {}
+		InputDialog {
+			property var oldName
+
+			titleText: i18n.tr("Rename Matrix")
+			msgText: i18n.tr("Enter new matrix name")
+			confirmText: i18n.tr("Rename matrix")
+
+			onConfirm: MatrixMemory.renameMatrix(oldName, input)
+		}
 	}
 
 	UbuntuListView {

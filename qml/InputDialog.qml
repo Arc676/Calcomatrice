@@ -20,23 +20,27 @@ import MatrixBackend 1.0
 
 Dialog {
 	id: dialog
-	objectName: "renameDialog"
+	objectName: "inputDialog"
 
-	property var oldName
+	signal confirm(var input)
 
-	title: i18n.tr("Rename Matrix")
-	text: i18n.tr("Enter new matrix name")
+	property var confirmText
+	property var titleText
+	property var msgText
+
+	title: titleText
+	text: msgText
 
 	TextField {
-		id: nameField
+		id: inputField
 	}
 
 	Button {
 		id: confirm
-		text: i18n.tr("Rename matrix")
+		text: dialog.confirmText
 		onClicked: {
-			MatrixMemory.renameMatrix(oldName, nameField.text)
 			PopupUtils.close(dialog)
+			dialog.confirm(inputField.text)
 		}
 	}
 

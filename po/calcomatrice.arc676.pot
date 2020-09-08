@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 08:59+0000\n"
+"POT-Creation-Date: 2020-09-08 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Save matrix"
 msgstr ""
 
-#: ../qml/SaveDialog.qml:45 ../qml/RenameDialog.qml:45
+#: ../qml/SaveDialog.qml:45 ../qml/InputDialog.qml:49
 #: ../qml/ConfirmDialog.qml:43
 msgid "Cancel"
 msgstr ""
@@ -175,31 +175,43 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../qml/MemoryUI.qml:98
-msgid "Clear Memory"
+#: ../qml/MemoryUI.qml:33
+msgid "Rename Matrix"
+msgstr ""
+
+#: ../qml/MemoryUI.qml:34
+msgid "Enter new matrix name"
+msgstr ""
+
+#: ../qml/MemoryUI.qml:35
+msgid "Rename matrix"
 msgstr ""
 
 #: ../qml/MemoryUI.qml:106
+msgid "Clear Memory"
+msgstr ""
+
+#: ../qml/MemoryUI.qml:114
 msgid ""
 "Are you sure you want to clear all saved matrices? This cannot be undone."
 msgstr ""
 
-#: ../qml/MemoryUI.qml:107
+#: ../qml/MemoryUI.qml:115
 msgid "Yes, delete them"
-msgstr ""
-
-#: ../qml/RenameDialog.qml:27
-msgid "Rename Matrix"
-msgstr ""
-
-#: ../qml/RenameDialog.qml:28
-msgid "Enter new matrix name"
-msgstr ""
-
-#: ../qml/RenameDialog.qml:36
-msgid "Rename matrix"
 msgstr ""
 
 #: ../qml/ConfirmDialog.qml:28
 msgid "Warning"
+msgstr ""
+
+#: ../qml/MatrixVisualizer.qml:62
+msgid "Set Entry"
+msgstr ""
+
+#: ../qml/MatrixVisualizer.qml:63
+msgid "Element at %1, %2"
+msgstr ""
+
+#: ../qml/MatrixVisualizer.qml:64
+msgid "Confirm"
 msgstr ""
