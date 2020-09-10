@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-08 15:44+0000\n"
+"POT-Creation-Date: 2020-09-10 12:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,31 +34,31 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:54
+#: ../qml/MatrixCreator.qml:55
 msgid "Rows"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:67
+#: ../qml/MatrixCreator.qml:69
 msgid "Columns"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:77
+#: ../qml/MatrixCreator.qml:80
 msgid "Create matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:95
+#: ../qml/MatrixCreator.qml:98
 msgid "Zero matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:101
+#: ../qml/MatrixCreator.qml:104
 msgid "Identity matrix (square matrices only)"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:109
+#: ../qml/MatrixCreator.qml:113
 msgid "Matrix name"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:117
+#: ../qml/MatrixCreator.qml:131
 msgid "Save"
 msgstr ""
 
@@ -204,14 +204,14 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: ../qml/Help.qml:40
+#: ../qml/Help.qml:38
 msgid ""
 "Calcomatrice is a matrix calculator application. You can work with matrices "
 "of any size. Matrices can be saved in memory for later use under any name "
 "that starts with a letter; each matrix must have a unique name."
 msgstr ""
 
-#: ../qml/Help.qml:44
+#: ../qml/Help.qml:42
 msgid ""
 "Use <b>+</b>, <b>-</b> to add or subtract matrices. Use <b>*</b> to multiply "
 "matrices together. Scalar multiplication uses <b>.</b> and the scalar must "
@@ -219,7 +219,7 @@ msgid ""
 "must precede the power."
 msgstr ""
 
-#: ../qml/Help.qml:48
+#: ../qml/Help.qml:46
 msgid ""
 "In portrait mode, swipe up from the bottom of the screen to access matrix "
 "memory and additional matrix functions. Remember to add the closing "
@@ -233,14 +233,14 @@ msgid ""
 "Note that the determinant of a nonsquare matrix is always zero."
 msgstr ""
 
-#: ../qml/Help.qml:52
+#: ../qml/Help.qml:50
 msgid ""
 "The toolbar provides access to matrix memory and the matrix editor. The "
 "editor is also accessible from matrix memory. From the main calculator view, "
 "you can also clear your calculation history."
 msgstr ""
 
-#: ../qml/Help.qml:56
+#: ../qml/Help.qml:54
 msgid ""
 "Swipe right on any entry in the calculation history to and tap the delete "
 "button to delete that entry. Swipe left and tap the save button to save the "

@@ -24,12 +24,10 @@ Page {
 		id: scroll
 		anchors {
 			top: header.bottom
-			topMargin: margin
 			left: parent.left
-			leftMargin: margin
 			right: parent.right
-			rightMargin: margin
 			bottom: parent.bottom
+			margins: margin
 		}
 
 		Column {

@@ -34,87 +34,102 @@ Page {
 		NameErrorDialog {}
 	}
 
-	Column {
-		spacing: margin
+	ScrollView {
+		id: scroll
 		anchors {
 			top: header.bottom
-			topMargin: margin
 			left: parent.left
-			leftMargin: margin
 			right: parent.right
-			rightMargin: margin
 			bottom: parent.bottom
-			bottomMargin: margin
+			margins: margin
 		}
 
-		Row {
+		Column {
 			spacing: margin
+			width: scroll.width
 
-			Label {
-				text: i18n.tr("Rows")
+			Row {
+				spacing: margin
+
+				Label {
+					text: i18n.tr("Rows")
+					anchors.verticalCenter: rowField.verticalCenter
+				}
+
+				TextField {
+					id: rowField
+					inputMethodHints: Qt.ImhDigitsOnly
+				}
 			}
 
-			TextField {
-				id: rowField
-				inputMethodHints: Qt.ImhDigitsOnly
-			}
-		}
+			Row {
+				spacing: margin
 
-		Row {
-			spacing: margin
+				Label {
+					text: i18n.tr("Columns")
+					anchors.verticalCenter: colField.verticalCenter
+				}
 
-			Label {
-				text: i18n.tr("Columns")
-			}
-
-			TextField {
-				id: colField
-				inputMethodHints: Qt.ImhDigitsOnly
-			}
-		}
-
-		Button {
-			text: i18n.tr("Create matrix")
-			onClicked: {
-				var rows = parseInt(rowField.text)
-				var cols = parseInt(colField.text)
-				visualizer.matrix.createMatrix(rows, cols)
-			}
-		}
-
-		MatrixVisualizer {
-			id: visualizer
-			labelText: "New matrix"
-			matrix: Matrix {}
-			editEnabled: true
-			fontSize: 20
-		}
-
-		Button {
-			width: parent.width
-			text: i18n.tr("Zero matrix")
-			onClicked: visualizer.matrix.makeZeroMatrix()
-		}
-
-		Button {
-			width: parent.width
-			text: i18n.tr("Identity matrix (square matrices only)")
-			onClicked: visualizer.matrix.makeIdentityMatrix()
-		}
-
-		Row {
-			spacing: margin
-
-			Label {
-				text: i18n.tr("Matrix name")
+				TextField {
+					id: colField
+					inputMethodHints: Qt.ImhDigitsOnly
+				}
 			}
 
-			TextField {
-				id: matrixName
+			Button {
+				text: i18n.tr("Create matrix")
+				onClicked: {
+					var rows = parseInt(rowField.text)
+					var cols = parseInt(colField.text)
+					visualizer.matrix.createMatrix(rows, cols)
+				}
+			}
+
+			MatrixVisualizer {
+				id: visualizer
+				labelText: "New matrix"
+				matrix: Matrix {}
+				editEnabled: true
+				textSize: Label.Large
+			}
+
+			Button {
+				width: parent.width
+				text: i18n.tr("Zero matrix")
+				onClicked: visualizer.matrix.makeZeroMatrix()
+			}
+
+			Button {
+				width: parent.width
+				text: i18n.tr("Identity matrix (square matrices only)")
+				onClicked: visualizer.matrix.makeIdentityMatrix()
+			}
+
+			Item {
+				height: matrixName.height
+				width: parent.width
+				Label {
+					id: nameLbl
+					text: i18n.tr("Matrix name")
+					anchors {
+						left: parent.left
+						verticalCenter: matrixName.verticalCenter
+					}
+				}
+
+				TextField {
+					id: matrixName
+					anchors {
+						left: nameLbl.right
+						leftMargin: margin
+						right: parent.right
+					}
+				}
 			}
 
 			Button {
 				text: i18n.tr("Save")
+				width: parent.width
 				onClicked: {
 					var matName = matrixName.text.trim()
 					if (matName.length > 0 && /^[a-zA-Z]/.test(matName)) {

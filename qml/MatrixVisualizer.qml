@@ -26,7 +26,7 @@ ListItem {
 	property Matrix matrix
 	property var labelText
 	property bool editEnabled: false
-	property real fontSize: 12
+	property var textSize: Label.Small
 
 	Label {
 		id: matrixLabel
@@ -39,9 +39,9 @@ ListItem {
 		anchors.top: matrixLabel.bottom
 		anchors.left: parent.left
 
-		Text {
+		Label {
 			text: entry
-			font.pointSize: matrixVisualizer.fontSize
+			textSize: matrixVisualizer.textSize
 
 			property int row: Math.floor(index / matrix.cols)
 			property int col: index % matrix.cols
