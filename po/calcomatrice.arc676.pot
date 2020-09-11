@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 12:21+0000\n"
+"POT-Creation-Date: 2020-09-11 08:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,27 +66,27 @@ msgstr ""
 msgid "Saved Matrices"
 msgstr ""
 
-#: ../qml/BottomPane.qml:101
+#: ../qml/BottomPane.qml:102
 msgid "Invert"
 msgstr ""
 
-#: ../qml/BottomPane.qml:106
+#: ../qml/BottomPane.qml:107
 msgid "Determinant"
 msgstr ""
 
-#: ../qml/BottomPane.qml:111
+#: ../qml/BottomPane.qml:112
 msgid "Minors"
 msgstr ""
 
-#: ../qml/BottomPane.qml:116
+#: ../qml/BottomPane.qml:117
 msgid "Cofactors"
 msgstr ""
 
-#: ../qml/BottomPane.qml:121
+#: ../qml/BottomPane.qml:122
 msgid "Transpose"
 msgstr ""
 
-#: ../qml/BottomPane.qml:126
+#: ../qml/BottomPane.qml:127
 msgid "Identity"
 msgstr ""
 

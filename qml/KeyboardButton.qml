@@ -21,7 +21,7 @@ Rectangle {
 	property var buttonText
 	property var pushText
 	width: parent.width
-	height: btnLbl.height + 2 * margin
+	height: btnLbl.height
 	color: mouseArea.pressed ? Suru.secondaryBackgroundColor : Suru.backgroundColor
 
 	MouseArea {

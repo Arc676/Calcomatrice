@@ -84,57 +84,48 @@ Page {
 		}
 	}
 
-	Column {
+	ScrollView {
+		id: scroll
 		anchors {
 			top: parent.top
-			topMargin: margin
 			right: parent.right
-			rightMargin: margin
 			left: parent.horizontalCenter
-			leftMargin: margin
 			bottom: parent.bottom
-			bottomMargin: margin
-		}
-		spacing: margin
-
-		KeyboardButton {
-			buttonText: i18n.tr("Invert")
-			pushText: "invert("
+			margins: margin
 		}
 
-		KeyboardButton {
-			buttonText: i18n.tr("Determinant")
-			pushText: "det("
-		}
+		Column {
+			width: scroll.width
+			spacing: margin
 
-		KeyboardButton {
-			buttonText: i18n.tr("Minors")
-			pushText: "minors("
-		}
+			KeyboardButton {
+				buttonText: i18n.tr("Invert")
+				pushText: "invert("
+			}
 
-		KeyboardButton {
-			buttonText: i18n.tr("Cofactors")
-			pushText: "cofactors("
-		}
+			KeyboardButton {
+				buttonText: i18n.tr("Determinant")
+				pushText: "det("
+			}
 
-		KeyboardButton {
-			buttonText: i18n.tr("Transpose")
-			pushText: "transpose("
-		}
+			KeyboardButton {
+				buttonText: i18n.tr("Minors")
+				pushText: "minors("
+			}
 
-		KeyboardButton {
-			buttonText: i18n.tr("Identity")
-			pushText: "identity("
-		}
-	}
+			KeyboardButton {
+				buttonText: i18n.tr("Cofactors")
+				pushText: "cofactors("
+			}
 
-	SwipeArea {
-		anchors.fill: parent
-		direction: SwipeArea.Downwards
+			KeyboardButton {
+				buttonText: i18n.tr("Transpose")
+				pushText: "transpose("
+			}
 
-		onDraggingChanged: {
-			if (!dragging) {
-				bottomEdge.collapse()
+			KeyboardButton {
+				buttonText: i18n.tr("Identity")
+				pushText: "identity("
 			}
 		}
 	}
