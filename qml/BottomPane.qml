@@ -1,16 +1,16 @@
-//Copyright (C) 2020 Arc676/Alessandro Vinciguerra <alesvinciguerra@gmail.com>
+// Copyright (C) 2020 Arc676/Alessandro Vinciguerra <alesvinciguerra@gmail.com>
 
-//This program is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation (version 3)
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation (version 3)
 
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-//GNU General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
 
-//You should have received a copy of the GNU General Public License
-//along with this program. If not, see <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
@@ -25,6 +25,7 @@ Page {
 	Icon {
 		width: units.gu(3)
 		height: units.gu(1.5)
+		visible: !isLandscape
 		anchors {
 			top: parent.top
 			topMargin: units.gu(0.5)
@@ -44,6 +45,7 @@ Page {
 	Label {
 		id: memLbl
 		text: i18n.tr("Saved Matrices")
+		textSize: Label.Large
 		anchors {
 			top: parent.top
 			topMargin: margin
@@ -77,7 +79,7 @@ Page {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: {
-					inputField.text += matrixName
+					formulaPush(matrixName)
 					bottomEdge.collapse()
 				}
 			}
@@ -94,38 +96,19 @@ Page {
 			margins: margin
 		}
 
-		Column {
+		CalcKeyboard {
 			width: scroll.width
-			spacing: margin
-
-			KeyboardButton {
-				buttonText: i18n.tr("Invert")
-				pushText: "invert("
-			}
-
-			KeyboardButton {
-				buttonText: i18n.tr("Determinant")
-				pushText: "det("
-			}
-
-			KeyboardButton {
-				buttonText: i18n.tr("Minors")
-				pushText: "minors("
-			}
-
-			KeyboardButton {
-				buttonText: i18n.tr("Cofactors")
-				pushText: "cofactors("
-			}
-
-			KeyboardButton {
-				buttonText: i18n.tr("Transpose")
-				pushText: "transpose("
-			}
-
-			KeyboardButton {
-				buttonText: i18n.tr("Identity")
-				pushText: "identity("
+			KeyboardPage {
+				columns: 1
+				buttonMaxHeight: calculatorUI.height / 20
+				keyboardModel: new Array(
+					{ text: "Invert", name: "invert", pushText: "invert(" },
+					{ text: "Determinant", name: "det", pushText: "det(" },
+					{ text: "Minors", name: "minors", pushText: "minors(" },
+					{ text: "Cofactors", name: "cofactors", pushText: "cofactors(" },
+					{ text: "Transpose", name: "transpose", pushText: "transpose(" },
+					{ text: "Identity", name: "identity", pushText: "identity(" }
+				)
 			}
 		}
 	}

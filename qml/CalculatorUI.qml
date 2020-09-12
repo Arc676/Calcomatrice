@@ -13,6 +13,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.4
+import QtQuick.Window 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Suru 2.2
 import Ubuntu.Components.Themes.Ambiance 1.3
@@ -28,7 +29,92 @@ Page {
 	header: DefaultHeader {}
 
 	property bool isLandscape: root.width > root.height
+	property var decimalPoint: Qt.locale().decimalPoint
 	property CalculationHistory calcHist: CalculationHistory {}
+
+	property int pressedKey: -1
+	property string pressedKeyText: ""
+
+	onIsLandscapeChanged: bottomEdge.collapse()
+
+	function calculate() {
+		var expr = inputField.text
+		if (expr.length > 0) {
+			var res = MatrixBackend.evaluateExpression(expr)
+			calcHist.addCalculation(expr, res)
+			inputField.text = ""
+		}
+	}
+
+	function deleteElementFrom(formula) {
+		var lastChar = formula.slice(-1)
+		if (/\d/.test(lastChar)) {
+			return formula.substring(0, formula.length - 1).trim()
+		} else if (lastChar === '(') {
+			var idx = formula.lastIndexOf(' ')
+			return formula.substring(0, idx)
+		} else {
+			// Delete everything after the last parenthesis or the last space and everything that follows
+			return formula.replace(/ ?[^ (]+$/, '')
+		}
+	}
+
+	function deleteLastFormulaElement() {
+		alterFormula(function(formula) {
+			return deleteElementFrom(formula)
+		})
+	}
+
+	function addElement(element, formula) {
+		if (/^\d$/.test(element)) {
+			if (/[0-9.]$/.test(formula)) {
+				formula += String(element)
+			} else {
+				formula += ' ' + element
+			}
+		} else if (element === "()") {
+			const lastChar = formula.slice(-1)
+			if (formula.length === 0 || /[+-]/.test(lastChar) || lastChar === '^' || lastChar === '#' || lastChar === '*') {
+				formula += " ("
+			} else {
+				formula += " )"
+			}
+		} else if (element === '.') {
+			const lastSpace = formula.lastIndexOf(' ')
+			const lastWord = formula.substring(lastSpace + 1)
+			if (/^\d+$/.test(lastWord)) {
+				formula += element
+			}
+		} else {
+			formula += ' ' + element
+		}
+		return formula
+	}
+
+	function formulaPush(element) {
+		alterFormula(function(formula) {
+			return addElement(element, formula)
+		})
+	}
+
+	function alterFormula(alteringFunction) {
+		const cursor = inputField.cursorPosition
+		if (cursor === inputField.length) {
+			inputField.text = alteringFunction(inputField.text)
+		} else {
+			var rest = inputField.text.substring(cursor)
+			var formula = alteringFunction(inputField.text.substring(0, cursor))
+			console.log(formula)
+			console.log(rest)
+			if (rest.slice(0) !== ' ' && formula.slice(-1) !== ' ') formula += ' '
+			inputField.text = formula + rest
+			inputField.cursorPosition = formula.length
+		}
+	}
+
+	function clearFormula() {
+		inputField.text = ""
+	}
 
 	function clearHistory() {
 		PopupUtils.open(confirmDialog)
@@ -110,8 +196,11 @@ Page {
 		TextField {
 			id: inputField
 			height: parent.height
-			anchors.fill: parent
-			anchors.margins: margin
+			anchors {
+				fill: parent
+				leftMargin: margin
+				rightMargin: margin
+			}
 			color: Suru.foregroundColor
 			style: TextFieldStyle {
 				background: Item {
@@ -126,6 +215,22 @@ Page {
 			font.pixelSize: height * 0.7
 			onFocusChanged: focus = false
 			focus: false
+			cursorVisible: true
+
+			Keys.onPressed: keyPress(event)
+			Keys.onReleased: keyRelease(event)
+
+			function keyPress(event) {
+				keyboardLoader.item.pressedKey = event.key
+				keyboardLoader.item.pressedKeyText = event.text
+				// For debugging on desktop
+				if (event.key == Qt.Key_Up) bottomEdge.commit()
+			}
+
+			function keyRelease(event) {
+				keyboardLoader.item.pressedKey = -1
+				keyboardLoader.item.pressedKeyText = ""
+			}
 		}
 	}
 
@@ -146,24 +251,6 @@ Page {
 		source: isLandscape ? "LandscapeKeyboard.qml" : "PortraitKeyboard.qml"
 	}
 
-	/*
-	Button {
-		id: calcButton
-		text: "Calculate"
-		onClicked: {
-			var expr = inputField.text
-			if (expr.length > 0) {
-				var res = MatrixBackend.evaluateExpression(expr)
-				calcHist.addCalculation(expr, res)
-				inputField.text = ""
-			}
-		}
-	}
-	*/
-
-	// For debugging on desktop
-	Keys.onReleased: if (event.key == Qt.Key_Up) bottomEdge.commit()
-
 	BottomEdge {
 		id: bottomEdge
 		width: parent.width
@@ -171,7 +258,7 @@ Page {
 		enabled: !isLandscape
 		contentUrl: Qt.resolvedUrl("BottomPane.qml")
 		hint.text: i18n.tr("Memory/Functions")
-		hint.visible: enabled
+		hint.visible: !isLandscape
 	}
 
 	Component.onCompleted: {

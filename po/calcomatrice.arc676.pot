@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-12 07:29+0000\n"
+"POT-Creation-Date: 2020-09-12 15:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../qml/SaveDialog.qml:27
@@ -62,32 +62,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../qml/BottomPane.qml:46
+#: ../qml/BottomPane.qml:47
 msgid "Saved Matrices"
-msgstr ""
-
-#: ../qml/BottomPane.qml:102
-msgid "Invert"
-msgstr ""
-
-#: ../qml/BottomPane.qml:107
-msgid "Determinant"
-msgstr ""
-
-#: ../qml/BottomPane.qml:112
-msgid "Minors"
-msgstr ""
-
-#: ../qml/BottomPane.qml:117
-msgid "Cofactors"
-msgstr ""
-
-#: ../qml/BottomPane.qml:122
-msgid "Transpose"
-msgstr ""
-
-#: ../qml/BottomPane.qml:127
-msgid "Identity"
 msgstr ""
 
 #: ../qml/About.qml:40
@@ -125,17 +101,17 @@ msgid ""
 "Application icon by <a href='https://twitter.com/theberzi'>@theberzi</a>"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:45
+#: ../qml/CalculatorUI.qml:131
 msgid ""
 "Are you sure you want to clear your calculation history? This cannot be "
 "undone."
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:46
+#: ../qml/CalculatorUI.qml:132
 msgid "Yes, clear it"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:168
+#: ../qml/CalculatorUI.qml:260
 msgid "Memory/Functions"
 msgstr ""
 
@@ -214,7 +190,7 @@ msgstr ""
 #: ../qml/Help.qml:42
 msgid ""
 "Use <b>+</b>, <b>-</b> to add or subtract matrices. Use <b>*</b> to multiply "
-"matrices together. Scalar multiplication uses <b>.</b> and the scalar must "
+"matrices together. Scalar multiplication uses <b>•b> and the scalar must "
 "precede the matrix. The caret <b>^</b> represents matrix powers; the matrix "
 "must precede the power."
 msgstr ""
