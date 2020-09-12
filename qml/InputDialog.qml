@@ -27,7 +27,7 @@ Dialog {
 	property var confirmText
 	property var titleText
 	property var msgText
-	property var inputType
+	property var inputType: Qt.ImhNone
 
 	title: titleText
 	text: msgText

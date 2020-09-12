@@ -33,7 +33,6 @@ Page {
 			titleText: i18n.tr("Rename Matrix")
 			msgText: i18n.tr("Enter new matrix name")
 			confirmText: i18n.tr("Rename matrix")
-			inputType: Qt.ImhNone
 
 			onConfirm: MatrixMemory.renameMatrix(oldName, input)
 		}

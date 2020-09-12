@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-12 20:02+0000\n"
+"POT-Creation-Date: 2020-09-12 20:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,23 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: ../qml/SaveDialog.qml:27
-msgid "Save Matrix"
-msgstr ""
-
-#: ../qml/SaveDialog.qml:28
-msgid "Enter matrix name"
-msgstr ""
-
-#: ../qml/SaveDialog.qml:36
-msgid "Save matrix"
-msgstr ""
-
-#: ../qml/SaveDialog.qml:45 ../qml/InputDialog.qml:51
-#: ../qml/ConfirmDialog.qml:43
-msgid "Cancel"
-msgstr ""
 
 #: ../qml/MatrixCreator.qml:55
 msgid "Rows"
@@ -101,17 +84,33 @@ msgid ""
 "Application icon by <a href='https://twitter.com/theberzi'>@theberzi</a>"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:136
+#: ../qml/InputDialog.qml:51 ../qml/ConfirmDialog.qml:43
+msgid "Cancel"
+msgstr ""
+
+#: ../qml/CalculatorUI.qml:133
+msgid "Save Matrix"
+msgstr ""
+
+#: ../qml/CalculatorUI.qml:134
+msgid "Enter matrix name"
+msgstr ""
+
+#: ../qml/CalculatorUI.qml:135
+msgid "Save matrix"
+msgstr ""
+
+#: ../qml/CalculatorUI.qml:144
 msgid ""
 "Are you sure you want to clear your calculation history? This cannot be "
 "undone."
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:137
+#: ../qml/CalculatorUI.qml:145
 msgid "Yes, clear it"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:266
+#: ../qml/CalculatorUI.qml:274
 msgid "Memory/Functions"
 msgstr ""
 
@@ -163,16 +162,16 @@ msgstr ""
 msgid "Rename matrix"
 msgstr ""
 
-#: ../qml/MemoryUI.qml:107
+#: ../qml/MemoryUI.qml:106
 msgid "Clear Memory"
 msgstr ""
 
-#: ../qml/MemoryUI.qml:115
+#: ../qml/MemoryUI.qml:114
 msgid ""
 "Are you sure you want to clear all saved matrices? This cannot be undone."
 msgstr ""
 
-#: ../qml/MemoryUI.qml:116
+#: ../qml/MemoryUI.qml:115
 msgid "Yes, delete them"
 msgstr ""
 
@@ -197,7 +196,7 @@ msgid ""
 "must precede the power. If a digit follows the minus operator, these will be "
 "parsed together as a negative number. To subtract an expression starting "
 "with a digit, add that expression using the opposite number (e.g. to compute "
-"<i>M1 - 2M2</i>, write <b>M1 + -2 • M2</b>)."
+"<i>A - 2B</i>, write <b>A + -2 • B</b>)."
 msgstr ""
 
 #: ../qml/Help.qml:46
@@ -228,7 +227,7 @@ msgstr ""
 
 #: ../qml/Help.qml:54
 msgid ""
-"Swipe right on any entry in the calculation history to and tap the delete "
+"Swipe right on any entry in the calculation history and tap the delete "
 "button to delete that entry. Swipe left and tap the save button to save the "
 "result of the calculation as a new matrix in memory. From matrix memory, "
 "swipe right on any entry and tap delete to delete the matrix. Swipe left to "

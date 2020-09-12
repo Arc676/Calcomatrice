@@ -127,7 +127,15 @@ Page {
 
 	Component {
 		id: saveDialog
-		SaveDialog {}
+		InputDialog {
+			property var matrix
+
+			titleText: i18n.tr("Save Matrix")
+			msgText: i18n.tr("Enter matrix name")
+			confirmText: i18n.tr("Save matrix")
+
+			onConfirm: MatrixMemory.saveMatrixWithName(input, matrix)
+		}
 	}
 
 	Component {
