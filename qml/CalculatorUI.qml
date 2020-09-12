@@ -14,6 +14,8 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Suru 2.2
+import Ubuntu.Components.Themes.Ambiance 1.3
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
@@ -25,6 +27,7 @@ Page {
 
 	header: DefaultHeader {}
 
+	property bool isLandscape: root.width > root.height
 	property CalculationHistory calcHist: CalculationHistory {}
 
 	function clearHistory() {
@@ -55,7 +58,7 @@ Page {
 			leftMargin: margin
 			right: parent.right
 			rightMargin: margin
-			bottom: inputField.top
+			bottom: inputRect.top
 			bottomMargin: margin
 		}
 		model: calcHist
@@ -90,20 +93,44 @@ Page {
 		}
 	}
 
-	TextField {
-		id: inputField
+	Rectangle {
+		id: inputRect
 		anchors {
 			left: parent.left
 			leftMargin: margin
 			right: parent.right
 			rightMargin: margin
-			bottom: calcButton.top
+			bottom: keyboardLoader.top
 			bottomMargin: margin
+		}
+		color: Suru.backgroundColor
+		width: parent.width
+		height: units.gu(6)
+
+		TextField {
+			id: inputField
+			height: parent.height
+			anchors.fill: parent
+			anchors.margins: margin
+			color: Suru.foregroundColor
+			style: TextFieldStyle {
+				background: Item {
+					UbuntuShape {
+						aspect: UbuntuShape.Flat
+						color: Suru.secondaryBackgroundColor
+						width: parent.width
+						height: parent.height
+					}
+				}
+			}
+			font.pixelSize: height * 0.7
+			onFocusChanged: focus = false
+			focus: false
 		}
 	}
 
-	Button {
-		id: calcButton
+	Loader {
+		id: keyboardLoader
 		anchors {
 			left: parent.left
 			leftMargin: margin
@@ -112,6 +139,16 @@ Page {
 			bottom: parent.bottom
 			bottomMargin: margin
 		}
+		width: parent.width
+		active: false
+		property bool sizeReady: Window.active
+		onSizeReadyChanged: if (sizeReady) keyboardLoader.active = true
+		source: isLandscape ? "LandscapeKeyboard.qml" : "PortraitKeyboard.qml"
+	}
+
+	/*
+	Button {
+		id: calcButton
 		text: "Calculate"
 		onClicked: {
 			var expr = inputField.text
@@ -122,6 +159,7 @@ Page {
 			}
 		}
 	}
+	*/
 
 	// For debugging on desktop
 	Keys.onReleased: if (event.key == Qt.Key_Up) bottomEdge.commit()
@@ -130,6 +168,7 @@ Page {
 		id: bottomEdge
 		width: parent.width
 		height: parent.height / 2
+		enabled: !isLandscape
 		contentUrl: Qt.resolvedUrl("BottomPane.qml")
 		hint.text: i18n.tr("Memory/Functions")
 		hint.visible: enabled
