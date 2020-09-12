@@ -39,7 +39,7 @@ Page {
 			}
 
 			WrappingLabel {
-				text: i18n.tr("Use <b>+</b>, <b>-</b> to add or subtract matrices. Use <b>*</b> to multiply matrices together. Scalar multiplication uses <b>.</b> and the scalar must precede the matrix. The caret <b>^</b> represents matrix powers; the matrix must precede the power.")
+				text: i18n.tr("Use <b>+</b>, <b>-</b> to add or subtract matrices. Use <b>*</b> to multiply matrices together. Scalar multiplication uses <b>•b> and the scalar must precede the matrix. The caret <b>^</b> represents matrix powers; the matrix must precede the power.")
 			}
 
 			WrappingLabel {

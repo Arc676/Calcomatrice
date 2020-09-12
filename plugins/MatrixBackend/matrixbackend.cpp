@@ -20,7 +20,7 @@ bool MatrixBackend::evalFailed = false;
 
 int isBinaryOperator(char* str) {
 	char c = str[0];
-	return c == '+' || c == '-' || c == '*' || c == '.' || c == '^';
+	return c == '+' || c == '-' || c == '*' || c == '#' || c == '^';
 }
 
 int isUnaryOperator(char* str) {
@@ -46,7 +46,7 @@ void operatorProperties(char* str, int* prec, int* left) {
                         *prec = 30;
                         *left = 0;
                         return;
-                case '.':
+                case '#':
                         *prec = 20;
                         *left = 1;
                         return;
@@ -109,7 +109,7 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 			matrix_destroyMatrix(right);
 			break;
 		}
-		case '.':
+		case '#':
 		{
 			token = PARSE_TOKEN(NULL, &saveptr);
 			double scalar = (double)strtod(token, (char**)NULL);

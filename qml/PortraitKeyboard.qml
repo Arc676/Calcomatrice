@@ -31,7 +31,7 @@ CalcKeyboard {
             { text: "←", name: "delete", action: "delete", kbdKeys: [Qt.Key_Backspace, Qt.Key_Delete], secondaryAction: "clearFormula", role: "highlight" },
             { text: "( )", name: "universalBracket", pushText: "()", pasteTexts: ["(", ")"], kbdKeys: [Qt.Key_ParenLeft, Qt.Key_ParenRight, Qt.Key_BracketLeft, Qt.Key_BracketRight] },
             { text: "^", name: "power", pushText: "^", kbdKeys: [Qt.Key_AsciiCircum]},
-            { text: ".", name: "scalarMul", pushText: ".", kbdKeys: [Qt.Key_Period] },
+            { text: "•", name: "scalarMul", pushText: "#", kbdKeys: [Qt.Key_Period] },
             { number: 7, name: "seven" },
             { number: 8, name: "eight" },
             { number: 9, name: "nine" },
