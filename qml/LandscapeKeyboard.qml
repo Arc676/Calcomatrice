@@ -18,15 +18,15 @@ import Ubuntu.Components 1.3
 Rectangle {
 	id: calcKeyboard
 	width: parent.width
-	height: parent.height
+	height: calculatorUI.height / 2
 
 	PortraitKeyboard {
+		id: kbd
 		anchors {
 			left: parent.left
 			top: parent.top
 			right: parent.horizontalCenter
 			bottom: parent.bottom
-			bottomMargin: margin
 		}
 	}
 

@@ -193,7 +193,7 @@ Page {
 			right: parent.right
 			rightMargin: margin
 			bottom: keyboardLoader.top
-			bottomMargin: margin * 2
+			bottomMargin: margin
 		}
 		color: Suru.backgroundColor
 		width: parent.width

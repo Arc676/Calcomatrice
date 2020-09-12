@@ -45,7 +45,7 @@ Page {
 	Label {
 		id: memLbl
 		text: i18n.tr("Saved Matrices")
-		textSize: Label.XLarge
+		textSize: Label.Large
 		anchors {
 			top: parent.top
 			topMargin: margin
@@ -73,7 +73,7 @@ Page {
 			Label {
 				id: lbl
 				text: matrixName
-				textSize: Label.Large
+				textSize: Label.Medium
 				anchors.centerIn: parent
 			}
 
@@ -101,7 +101,7 @@ Page {
 			width: scroll.width
 			KeyboardPage {
 				columns: 1
-				buttonMaxHeight: calculatorUI.height / 20
+				buttonMaxHeight: calculatorUI.height / 12
 				keyboardModel: new Array(
 					{ text: "Invert", name: "invert", pushText: "invert(" },
 					{ text: "Determinant", name: "det", pushText: "det(" },
