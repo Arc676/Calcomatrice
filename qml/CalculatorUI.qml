@@ -30,6 +30,7 @@ Page {
 
 	property bool isLandscape: root.width > root.height
 	property var decimalPoint: Qt.locale().decimalPoint
+	property string internalFormula: ""
 	property CalculationHistory calcHist: CalculationHistory {}
 
 	property int pressedKey: -1
@@ -38,11 +39,11 @@ Page {
 	onIsLandscapeChanged: bottomEdge.collapse()
 
 	function calculate() {
-		var expr = inputField.text
+		var expr = internalFormula
 		if (expr.length > 0) {
 			var res = MatrixBackend.evaluateExpression(expr)
-			calcHist.addCalculation(expr, res)
-			inputField.text = ""
+			calcHist.addCalculation(renderFormula(expr), res)
+			clearFormula()
 		}
 	}
 
@@ -100,24 +101,28 @@ Page {
 	function alterFormula(alteringFunction) {
 		const cursor = inputField.cursorPosition
 		if (cursor === inputField.length) {
-			inputField.text = alteringFunction(inputField.text)
+			internalFormula = alteringFunction(internalFormula)
 		} else {
-			var rest = inputField.text.substring(cursor)
-			var formula = alteringFunction(inputField.text.substring(0, cursor))
-			console.log(formula)
-			console.log(rest)
+			var rest = internalFormula.substring(cursor)
+			var formula = alteringFunction(internalFormula.substring(0, cursor))
 			if (rest.slice(0) !== ' ' && formula.slice(-1) !== ' ') formula += ' '
-			inputField.text = formula + rest
+			internalFormula = formula + rest
 			inputField.cursorPosition = formula.length
 		}
+		inputField.text = renderFormula(internalFormula)
 	}
 
 	function clearFormula() {
+		internalFormula = ""
 		inputField.text = ""
 	}
 
 	function clearHistory() {
 		PopupUtils.open(confirmDialog)
+	}
+
+	function renderFormula(formula) {
+		return formula.replace('#', '•').replace('*', '×').replace('.', decimalPoint)
 	}
 
 	Component {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-12 15:26+0000\n"
+"POT-Creation-Date: 2020-09-12 18:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,17 +101,17 @@ msgid ""
 "Application icon by <a href='https://twitter.com/theberzi'>@theberzi</a>"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:131
+#: ../qml/CalculatorUI.qml:136
 msgid ""
 "Are you sure you want to clear your calculation history? This cannot be "
 "undone."
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:132
+#: ../qml/CalculatorUI.qml:137
 msgid "Yes, clear it"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:261
+#: ../qml/CalculatorUI.qml:266
 msgid "Memory/Functions"
 msgstr ""
 
