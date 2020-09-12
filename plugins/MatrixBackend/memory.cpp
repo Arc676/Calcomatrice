@@ -46,6 +46,81 @@ QHash<int, QByteArray> Memory::roleNames() const {
 void Memory::initMemory() {
 	storedMatrices = QMap<QString, Matrix*>();
 	matrixNames = QMap<QString, QString>();
+
+	QString loc = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+	QFile matrices(loc + "/matrices");
+	if (!matrices.open(QIODevice::ReadOnly)) {
+		return;
+	}
+	QFile names(loc + "/names");
+	if (!names.open(QIODevice::ReadOnly)) {
+		matrices.close();
+		return;
+	}
+
+	QTextStream tsMatrices(&matrices);
+	QString name;
+	while (true) {
+		QString tmpName;
+		int rows, cols;
+
+		tsMatrices >> tmpName;
+		if (tmpName == "") break;
+		name = tmpName;
+
+		tsMatrices >> rows;
+		tsMatrices >> cols;
+
+		Matrix* mat = matrix_createMatrix(rows, cols);
+		for (int r = 0; r < rows; r++) {
+			for (int c = 0; c < cols; c++) {
+				tsMatrices >> mat->matrix[r][c];
+			}
+		}
+
+		storedMatrices[name] = mat;
+		matrixCount++;
+	}
+	matrices.close();
+
+	matrixCount = name.right(name.length() - 10).toInt() + 1;
+
+	QDataStream dsNames(&names);
+	dsNames.setVersion(QDataStream::Qt_5_3);
+	dsNames >> matrixNames;
+	names.close();
+	reloadTable();
+}
+
+void Memory::writeToDisk() const {
+	QString loc = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+	QFile matrices(loc + "/matrices");
+	if (!matrices.open(QIODevice::WriteOnly)) {
+		return;
+	}
+	QFile names(loc + "/names");
+	if (!names.open(QIODevice::WriteOnly)) {
+		matrices.close();
+		return;
+	}
+
+	QTextStream tsMatrices(&matrices);
+	for (auto entry = storedMatrices.cbegin(); entry != storedMatrices.cend(); entry++) {
+		const Matrix* mat = entry.value();
+		tsMatrices << entry.key() << " " << mat->rows << " " << mat->cols;
+		for (int r = 0; r < mat->rows; r++) {
+			for (int c = 0; c < mat->cols; c++) {
+				tsMatrices << " " << mat->matrix[r][c];
+			}
+		}
+		tsMatrices << "\n";
+	}
+	matrices.close();
+
+	QDataStream dsNames(&names);
+	dsNames.setVersion(QDataStream::Qt_5_3);
+	dsNames << matrixNames;
+	names.close();
 }
 
 void Memory::clearMemory() {
@@ -54,6 +129,7 @@ void Memory::clearMemory() {
 		it = storedMatrices.erase(it);
 	}
 	matrixNames.clear();
+	matrixCount = 0;
 	reloadTable();
 }
 
@@ -64,7 +140,7 @@ bool Memory::matrixExists(QString name) const {
 Matrix* Memory::getMatrixWithName(char* name) const {
 	QString qname(name);
 	if (storedMatrices.find(qname) != storedMatrices.end()) {
-			return storedMatrices[qname];
+		return storedMatrices[qname];
 	}
 	return nullptr;
 }

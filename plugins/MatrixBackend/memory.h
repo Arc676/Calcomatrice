@@ -20,6 +20,10 @@
 #include <QMap>
 #include <QString>
 #include <QVariant>
+#include <QStandardPaths>
+#include <QFile>
+#include <QDataStream>
+#include <QTextStream>
 
 #include <QQmlEngine>
 #include <QJSEngine>
@@ -67,6 +71,7 @@ public:
 	Matrix* getMatrixWithName(char* name) const;
 
 	Q_INVOKABLE void initMemory();
+	Q_INVOKABLE void writeToDisk() const;
 	Q_INVOKABLE void clearMemory();
 
 	Q_INVOKABLE void reloadTable();

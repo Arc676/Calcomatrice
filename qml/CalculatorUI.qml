@@ -272,6 +272,7 @@ Page {
 	}
 
 	Component.onDestruction: {
+		MatrixMemory.writeToDisk()
 		MatrixMemory.clearMemory()
 		calcHist.clearAll()
 	}
