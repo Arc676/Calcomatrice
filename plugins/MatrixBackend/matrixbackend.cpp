@@ -19,6 +19,7 @@ MatrixBackend* MatrixBackend::instance = nullptr;
 bool MatrixBackend::evalFailed = false;
 
 int isBinaryOperator(char* str) {
+	if (str[1] != 0) return 0;
 	char c = str[0];
 	return c == '+' || c == '-' || c == '*' || c == '#' || c == '^';
 }

@@ -68,7 +68,7 @@ Page {
 
 	function addElement(element, formula) {
 		if (/^\d$/.test(element)) {
-			if (/[0-9.]$/.test(formula)) {
+			if (/[0-9.-]$/.test(formula)) {
 				formula += String(element)
 			} else {
 				formula += ' ' + element
@@ -83,7 +83,7 @@ Page {
 		} else if (element === '.') {
 			const lastSpace = formula.lastIndexOf(' ')
 			const lastWord = formula.substring(lastSpace + 1)
-			if (/^\d+$/.test(lastWord)) {
+			if (/^-?\d+$/.test(lastWord)) {
 				formula += element
 			}
 		} else {
@@ -122,7 +122,7 @@ Page {
 	}
 
 	function renderFormula(formula) {
-		return formula.replace('#', '•').replace('*', '×').replace('.', decimalPoint)
+		return formula.replace('#', '•').replace('*', '×').replace('.', decimalPoint).trim()
 	}
 
 	Component {
