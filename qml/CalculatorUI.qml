@@ -155,6 +155,7 @@ Page {
 				id: visualizer
 				matrix: calcResult
 				labelText: calcExpr
+				textSize: Label.Medium
 			}
 
 			leadingActions: ListItemActions {
@@ -187,7 +188,7 @@ Page {
 			right: parent.right
 			rightMargin: margin
 			bottom: keyboardLoader.top
-			bottomMargin: margin
+			bottomMargin: margin * 2
 		}
 		color: Suru.backgroundColor
 		width: parent.width

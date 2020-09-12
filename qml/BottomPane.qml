@@ -45,7 +45,7 @@ Page {
 	Label {
 		id: memLbl
 		text: i18n.tr("Saved Matrices")
-		textSize: Label.Large
+		textSize: Label.XLarge
 		anchors {
 			top: parent.top
 			topMargin: margin
@@ -58,7 +58,7 @@ Page {
 		clip: true
 		anchors {
 			top: memLbl.top
-			topMargin: margin
+			topMargin: margin * 2
 			left: parent.left
 			leftMargin: margin
 			right: parent.horizontalCenter
@@ -73,6 +73,7 @@ Page {
 			Label {
 				id: lbl
 				text: matrixName
+				textSize: Label.Large
 				anchors.centerIn: parent
 			}
 
