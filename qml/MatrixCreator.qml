@@ -30,8 +30,10 @@ Page {
 	}
 
 	Component {
-		id: errorDialog
-		NameErrorDialog {}
+		id: nameErrorDialog
+		ErrorDialog {
+			msg: i18n.tr("Matrix names must start with a letter.")
+		}
 	}
 
 	ScrollView {
@@ -135,7 +137,7 @@ Page {
 					if (matName.length > 0 && /^[a-zA-Z]/.test(matName)) {
 						MatrixMemory.saveMatrixWithName(matName, visualizer.matrix)
 					} else {
-						PopupUtils.open(errorDialog)
+						PopupUtils.open(nameErrorDialog)
 					}
 				}
 			}

@@ -18,10 +18,12 @@ import Ubuntu.Components.Popups 1.3
 
 Dialog {
 	id: dialog
-	objectName: "nameErrorDialog"
+	objectName: "errorDialog"
+
+	property string msg
 
 	title: i18n.tr("Error")
-	text: i18n.tr("Matrix names must start with a letter.")
+	text: msg
 
 	Button {
 		id: okBtn
