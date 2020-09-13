@@ -25,6 +25,13 @@ Page {
 
 	header: DefaultHeader {}
 
+	function initMatrix() {
+		var rows = parseInt(rowField.text)
+		var cols = parseInt(colField.text)
+		visualizer.matrix.createMatrix(rows, cols)
+		return [rows, cols]
+	}
+
 	function loadMatrix(matrix) {
 		visualizer.matrix.loadMatrix(matrix)
 	}
@@ -33,6 +40,13 @@ Page {
 		id: nameErrorDialog
 		ErrorDialog {
 			msg: i18n.tr("Matrix names must start with a letter.")
+		}
+	}
+
+	Component {
+		id: entryCountErrorDialog
+		ErrorDialog {
+			msg: i18n.tr("The number of entries in the string form must match the number of elements in the matrix.")
 		}
 	}
 
@@ -50,40 +64,87 @@ Page {
 			spacing: margin
 			width: scroll.width
 
-			Row {
-				spacing: margin
+			ComboButton {
+				id: builderSelection
+				width: parent.width
+				text: i18n.tr("Visual Matrix Editor")
+				property int selectedIndex: 0
+
+				UbuntuListView {
+					width: parent.width
+					height: builderSelection.comboListHeight
+					model: [
+						i18n.tr("Visual Matrix Editor"),
+						i18n.tr("String Parser"),
+					]
+					delegate: ListItem {
+						ListItemLayout {
+							title.text: modelData
+						}
+
+						onClicked: {
+							builderSelection.expanded = false
+							builderSelection.text = modelData
+							builderSelection.selectedIndex = index
+						}
+					}
+				}
+			}
+
+			Item {
+				height: rowField.height
+				width: parent.width
 
 				Label {
+					id: rowLbl
 					text: i18n.tr("Rows")
-					anchors.verticalCenter: rowField.verticalCenter
+					anchors {
+						left: parent.left
+						verticalCenter: rowField.verticalCenter
+					}
 				}
 
 				TextField {
 					id: rowField
 					inputMethodHints: Qt.ImhDigitsOnly
+					anchors {
+						left: rowLbl.right
+						leftMargin: margin
+						right: parent.right
+					}
 				}
 			}
 
-			Row {
-				spacing: margin
+			Item {
+				height: colField.height
+				width: parent.width
 
 				Label {
+					id: colLbl
 					text: i18n.tr("Columns")
-					anchors.verticalCenter: colField.verticalCenter
+					anchors {
+						left: parent.left
+						verticalCenter: colField.verticalCenter
+					}
 				}
 
 				TextField {
 					id: colField
 					inputMethodHints: Qt.ImhDigitsOnly
+					anchors {
+						left: colLbl.right
+						leftMargin: margin
+						right: parent.right
+					}
 				}
 			}
 
 			Button {
 				text: i18n.tr("Create matrix")
+				width: parent.width
+				visible: builderSelection.selectedIndex === 0
 				onClicked: {
-					var rows = parseInt(rowField.text)
-					var cols = parseInt(colField.text)
-					visualizer.matrix.createMatrix(rows, cols)
+					initMatrix()
 				}
 			}
 
@@ -93,23 +154,59 @@ Page {
 				matrix: Matrix {}
 				editEnabled: true
 				textSize: Label.Large
+				visible: builderSelection.selectedIndex === 0
 			}
 
 			Button {
 				width: parent.width
 				text: i18n.tr("Zero matrix")
 				onClicked: visualizer.matrix.makeZeroMatrix()
+				visible: builderSelection.selectedIndex === 0
 			}
 
 			Button {
 				width: parent.width
 				text: i18n.tr("Identity matrix (square matrices only)")
 				onClicked: visualizer.matrix.makeIdentityMatrix()
+				visible: builderSelection.selectedIndex === 0
+			}
+
+			TextArea {
+				id: matrixText
+				width: parent.width
+				height: units.gu(20)
+				inputMethodHints: Qt.ImhDigitsOnly
+				visible: builderSelection.selectedIndex === 1
+			}
+
+			Button {
+				width: parent.width
+				text: i18n.tr("Parse matrix")
+				onClicked: {
+					const params = initMatrix()
+					const rows = params[0]
+					const cols = params[1]
+					const count = rows * cols
+					const entries = matrixText.text.split(/[^0-9.-]/)
+					if (entries.length !== count) {
+						PopupUtils.open(entryCountErrorDialog)
+						return
+					}
+					for (var i = 0; i < count; i++) {
+						const r = i / cols
+						const c = i % cols
+						visualizer.matrix.editEntry(parseFloat(entries[i]), r, c)
+					}
+					builderSelection.selectedIndex = 0
+					builderSelection.text = i18n.tr("Visual Matrix Editor")
+				}
+				visible: builderSelection.selectedIndex === 1
 			}
 
 			Item {
 				height: matrixName.height
 				width: parent.width
+
 				Label {
 					id: nameLbl
 					text: i18n.tr("Matrix name")

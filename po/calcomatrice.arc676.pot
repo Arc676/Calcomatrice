@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-12 20:16+0000\n"
+"POT-Creation-Date: 2020-09-13 15:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,32 +17,63 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/MatrixCreator.qml:55
+#: ../qml/MatrixCreator.qml:42
+msgid "Matrix names must start with a letter."
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:49
+msgid ""
+"The number of entries in the string form must match the number of elements "
+"in the matrix."
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:70 ../qml/MatrixCreator.qml:77
+#: ../qml/MatrixCreator.qml:201
+msgid "Visual Matrix Editor"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:78
+msgid "String Parser"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:100
 msgid "Rows"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:69
+#: ../qml/MatrixCreator.qml:124
 msgid "Columns"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:80
+#: ../qml/MatrixCreator.qml:143
 msgid "Create matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:98
+#: ../qml/MatrixCreator.qml:162
 msgid "Zero matrix"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:104
+#: ../qml/MatrixCreator.qml:169
 msgid "Identity matrix (square matrices only)"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:113
+#: ../qml/MatrixCreator.qml:184
+msgid "Parse matrix"
+msgstr ""
+
+#: ../qml/MatrixCreator.qml:212
 msgid "Matrix name"
 msgstr ""
 
-#: ../qml/MatrixCreator.qml:131
+#: ../qml/MatrixCreator.qml:230
 msgid "Save"
+msgstr ""
+
+#: ../qml/ErrorDialog.qml:25
+msgid "Error"
+msgstr ""
+
+#: ../qml/ErrorDialog.qml:30
+msgid "OK"
 msgstr ""
 
 #: ../qml/BottomPane.qml:47
@@ -112,18 +143,6 @@ msgstr ""
 
 #: ../qml/CalculatorUI.qml:274
 msgid "Memory/Functions"
-msgstr ""
-
-#: ../qml/NameErrorDialog.qml:23
-msgid "Error"
-msgstr ""
-
-#: ../qml/NameErrorDialog.qml:24
-msgid "Matrix names must start with a letter."
-msgstr ""
-
-#: ../qml/NameErrorDialog.qml:28
-msgid "OK"
 msgstr ""
 
 #: ../qml/DefaultHeader.qml:22 calcomatrice.desktop.in.h:1
