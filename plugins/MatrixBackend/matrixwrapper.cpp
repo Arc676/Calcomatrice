@@ -21,6 +21,7 @@ MatrixWrapper::MatrixWrapper(Matrix* mat) : matrix(mat) {
 	beginResetModel();
 	endResetModel();
 	emit matrixChanged();
+	emit existsChanged();
 }
 
 void MatrixWrapper::loadMatrix(MatrixWrapper* mat) {
@@ -29,6 +30,11 @@ void MatrixWrapper::loadMatrix(MatrixWrapper* mat) {
 	matrix = matrix_copyMatrix(mat->getMatrix());
 	endResetModel();
 	emit matrixChanged();
+	emit existsChanged();
+}
+
+bool MatrixWrapper::exists() const {
+	return matrix != nullptr;
 }
 
 const Matrix* MatrixWrapper::getMatrix() const {
@@ -91,6 +97,7 @@ void MatrixWrapper::destroyMatrix() {
 		matrix_destroyMatrix(matrix);
 		endResetModel();
 		emit matrixChanged();
+		emit existsChanged();
 	}
 }
 
@@ -100,6 +107,7 @@ void MatrixWrapper::createMatrix(int rows, int cols) {
 	matrix = matrix_createZeroMatrix(rows, cols);
 	endResetModel();
 	emit matrixChanged();
+	emit existsChanged();
 }
 
 void MatrixWrapper::makeZeroMatrix() {

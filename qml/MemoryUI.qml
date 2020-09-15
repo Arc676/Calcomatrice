@@ -58,6 +58,7 @@ Page {
 			MatrixVisualizer {
 				id: matrixVisualizer
 				labelText: matrixName
+				nullText: i18n.tr("Matrix doesn't seem to exist")
 				matrix: matrixValue
 			}
 

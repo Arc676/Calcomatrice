@@ -169,6 +169,7 @@ Page {
 				matrix: calcResult
 				labelText: calcExpr
 				textSize: Label.Medium
+				nullText: i18n.tr("Invalid expression")
 			}
 
 			leadingActions: ListItemActions {

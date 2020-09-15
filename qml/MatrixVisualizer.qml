@@ -21,10 +21,11 @@ import MatrixBackend 1.0
 
 ListItem {
 	id: matrixVisualizer
-	height: matrixLabel.height + (grid.count > 0 ? (grid.itemAt(0).height + margin) * matrix.rows : margin)
+	height: matrixLabel.height + (grid.count > 0 ? (grid.itemAt(0).height + margin) * matrix.rows : margin) + (matrix.exists ? 0 : nullLbl.height + margin)
 
 	property Matrix matrix
-	property var labelText
+	property string labelText
+	property string nullText
 	property bool editEnabled: false
 	property var textSize: Label.Small
 
@@ -33,9 +34,22 @@ ListItem {
 		text: labelText
 	}
 
+	Label {
+		id: nullLbl
+		text: nullText
+		anchors {
+			top: matrixLabel.bottom
+			topMargin: margin
+			left: parent.left
+			leftMargin: margin
+		}
+		visible: !matrix.exists
+	}
+
 	Repeater {
 		id: grid
 		model: matrix
+		visible: matrix.exists
 		anchors.top: matrixLabel.bottom
 		anchors.left: parent.left
 

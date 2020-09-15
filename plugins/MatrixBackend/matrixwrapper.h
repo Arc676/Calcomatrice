@@ -28,9 +28,13 @@ class MatrixWrapper : public QAbstractListModel {
 	int rows() const;
 	int cols() const;
 
+	Q_PROPERTY(bool exists READ exists NOTIFY existsChanged);
+	bool exists() const;
+
 	Matrix* matrix;
 signals:
 	void matrixChanged();
+	void existsChanged();
 public:
 	MatrixWrapper();
 	MatrixWrapper(Matrix* mat);

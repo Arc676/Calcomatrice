@@ -151,6 +151,7 @@ Page {
 			MatrixVisualizer {
 				id: visualizer
 				labelText: "New matrix"
+				nullText: i18n.tr("(Tap 'Create matrix' to initialize the matrix)")
 				matrix: Matrix {}
 				editEnabled: true
 				textSize: Label.Large
