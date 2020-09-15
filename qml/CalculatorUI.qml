@@ -43,6 +43,7 @@ Page {
 		if (expr.length > 0) {
 			var res = MatrixBackend.evaluateExpression(expr)
 			calcHist.addCalculation(renderFormula(expr), res)
+			calcHistory.positionViewAtEnd()
 			clearFormula()
 		}
 	}
@@ -102,14 +103,17 @@ Page {
 		const cursor = inputField.cursorPosition
 		if (cursor === inputField.length) {
 			internalFormula = alteringFunction(internalFormula)
+			inputField.text = renderFormula(internalFormula)
 		} else {
-			var rest = internalFormula.substring(cursor)
-			var formula = alteringFunction(internalFormula.substring(0, cursor))
-			if (rest.slice(0) !== ' ' && formula.slice(-1) !== ' ') formula += ' '
+			var rest = internalFormula.trim().substring(cursor).trim()
+			var formula = alteringFunction(internalFormula.trim().substring(0, cursor).trim()).trim()
+			if (!/^\d[^ .]*/.test(rest) || !/[0-9.]$/.test(formula)) {
+				formula += ' '
+			}
 			internalFormula = formula + rest
+			inputField.text = renderFormula(internalFormula)
 			inputField.cursorPosition = formula.length
 		}
-		inputField.text = renderFormula(internalFormula)
 	}
 
 	function clearFormula() {
@@ -122,7 +126,7 @@ Page {
 	}
 
 	function renderFormula(formula) {
-		return formula.replace('#', '•').replace('*', '×').replace('.', decimalPoint).trim()
+		return formula.replace(/#/g, '•').replace(/\*/g, '×').replace(/\./g, decimalPoint).trim()
 	}
 
 	Component {
@@ -186,6 +190,7 @@ Page {
 				actions: [
 					Action {
 						iconName: "save"
+						visible: calcResult !== undefined && calcResult.exists
 
 						onTriggered: PopupUtils.open(saveDialog, calculatorUI, {"matrix": calcResult})
 					}
@@ -246,6 +251,12 @@ Page {
 				keyboardLoader.item.pressedKey = -1
 				keyboardLoader.item.pressedKeyText = ""
 			}
+		}
+
+		MouseArea {
+			anchors.fill: parent
+			propagateComposedEvents: true
+			onClicked: inputField.cursorPosition = inputField.positionAt(mouseX, TextInput.CursorOnCharacter)
 		}
 	}
 
