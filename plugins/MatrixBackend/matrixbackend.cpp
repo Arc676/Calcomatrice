@@ -69,18 +69,23 @@ MatrixWrapper* MatrixBackend::evaluateExpression(QString expr) const {
 	QByteArray arr = expr.toUtf8();
 	char* cexpr = arr.data();
 	char* prefix = infixToPrefix(cexpr, isBinaryOperator, isUnaryOperator, operatorProperties);
-	Matrix* result = MatrixBackend::eval(prefix, NULL);
+	Matrix* result = prefix ? MatrixBackend::eval(prefix, NULL) : nullptr;
 	return new MatrixWrapper(result);
 }
 
 Matrix* MatrixBackend::eval(char* expr, char** progress) {
 	evalFailed = false;
-	Matrix* res = 0;
+	Matrix* res = nullptr;
+	char* endptr = nullptr;
 	char* saveptr;
 	if (progress) {
 		saveptr = *progress;
 	}
 	char* token = progress ? PARSE_TOKEN(NULL, &saveptr) : PARSE_TOKEN(expr, &saveptr);
+	if (!token) {
+		evalFailed = true;
+		return nullptr;
+	}
 	switch (token[0]) {
 		case '+':
 		case '-':
@@ -113,7 +118,11 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 		case '#':
 		{
 			token = PARSE_TOKEN(NULL, &saveptr);
-			double scalar = (double)strtod(token, (char**)NULL);
+			double scalar = (double)strtod(token, &endptr);
+			if (scalar == 0 && token == endptr) {
+				evalFailed = true;
+				return nullptr;
+			}
 
 			Matrix* m1 = eval(expr, &saveptr);
 			if (evalFailed) return nullptr;
@@ -129,7 +138,11 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 			if (evalFailed) return nullptr;
 
 			token = PARSE_TOKEN(NULL, &saveptr);
-			int power = (int)strtol(token, (char**)NULL, 0);
+			int power = (int)strtol(token, &endptr, 0);
+			if (power == 0 && token == endptr) {
+				evalFailed = true;
+				return nullptr;
+			}
 			if (power == 0) {
 				res = matrix_createIdentityMatrix(m1->rows);
 				matrix_destroyMatrix(m1);
@@ -156,7 +169,11 @@ Matrix* MatrixBackend::eval(char* expr, char** progress) {
 		{
 			if (!strcmp(token, "id")) {
 				token = PARSE_TOKEN(NULL, &saveptr);
-				int size = (int)strtol(token, (char**)NULL, 0);
+				int size = (int)strtol(token, &endptr, 0);
+				if (size == 0 && token == endptr) {
+					evalFailed = true;
+					return nullptr;
+				}
 				res = matrix_createIdentityMatrix(size);
 			} else {
 				Matrix* m1 = eval(expr, &saveptr);
