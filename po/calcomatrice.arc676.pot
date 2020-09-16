@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcomatrice.arc676\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 18:22+0000\n"
+"POT-Creation-Date: 2020-09-16 07:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,33 +123,33 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:137
+#: ../qml/CalculatorUI.qml:140
 msgid "Save Matrix"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:138
+#: ../qml/CalculatorUI.qml:141
 msgid "Enter matrix name"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:139
+#: ../qml/CalculatorUI.qml:142
 msgid "Save matrix"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:148
+#: ../qml/CalculatorUI.qml:151
 msgid ""
 "Are you sure you want to clear your calculation history? This cannot be "
 "undone."
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:149
+#: ../qml/CalculatorUI.qml:152
 msgid "Yes, clear it"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:176
+#: ../qml/CalculatorUI.qml:179
 msgid "Invalid expression"
 msgstr ""
 
-#: ../qml/CalculatorUI.qml:286
+#: ../qml/CalculatorUI.qml:289
 msgid "Memory/Functions"
 msgstr ""
 

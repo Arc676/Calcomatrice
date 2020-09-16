@@ -50,7 +50,7 @@ Page {
 
 	function deleteElementFrom(formula) {
 		var lastChar = formula.slice(-1)
-		if (/\d/.test(lastChar)) {
+		if (/[0-9.]/.test(lastChar)) {
 			return formula.substring(0, formula.length - 1).trim()
 		} else if (lastChar === '(') {
 			var idx = formula.lastIndexOf(' ')
@@ -105,9 +105,12 @@ Page {
 			internalFormula = alteringFunction(internalFormula)
 			inputField.text = renderFormula(internalFormula)
 		} else {
-			var rest = internalFormula.trim().substring(cursor).trim()
+			const rest = internalFormula.trim().substring(cursor).trim()
+			const rspace = rest.indexOf(' ')
+			const fwr = rspace > 0 ? rest.substring(0, rspace) : rest
 			var formula = alteringFunction(internalFormula.trim().substring(0, cursor).trim()).trim()
-			if (!/^\d[^ .]*/.test(rest) || !/[0-9.]$/.test(formula)) {
+			const lwf = formula.substring(formula.lastIndexOf(' ') + 1)
+			if (!/^\d+\.?\d*$/.test(lwf + fwr)) {
 				formula += ' '
 			}
 			internalFormula = formula + rest
